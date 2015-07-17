@@ -1,0 +1,13 @@
+[package]
+name = "pandoc_ast"
+version = "0.1.0"
+authors = ["Oliver Schneider <rust-pandoc-ast885559849564@oli-obk.de>"]
+readme = "README.md"
+keywords = ["latex", "markdown", "pandoc", "filter", "ast"]
+repository = "https://github.com/oli-obk/rust-pandoc-ast"
+license-file = "LICENSE"
+description = "deserializes and serializes pandoc ast json"
+
+[dependencies]
+serde = {path = "../serde/serde"}
+serde_macros = {path = "../serde/serde_macros"}
