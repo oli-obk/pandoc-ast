@@ -9,12 +9,12 @@ pub type Int = i64;
 pub type Double = f64;
 
 #[derive(Serialize, Deserialize)]
-pub struct Pandoc(Meta, Vec<Block>);
+pub struct Pandoc(pub Meta, pub Vec<Block>);
 
 #[derive(Serialize, Deserialize)]
 #[allow(non_snake_case)]
 pub struct Meta {
-    unMeta: Map<String, MetaValue>,
+    pub unMeta: Map<String, MetaValue>,
 }
 
 #[derive(Deserialize)]
@@ -211,7 +211,7 @@ impl Serialize for ListNumberDelim {
 }
 
 #[derive(Serialize, Deserialize)]
-pub struct Format(String);
+pub struct Format(pub String);
 
 pub type Attr = (String, Vec<String>, Vec<(String, String)>);
 
@@ -272,12 +272,12 @@ impl Serialize for MathType {
 #[derive(Serialize, Deserialize)]
 #[allow(non_snake_case)]
 pub struct Citation {
-    citationId: String,
-    citationPrefix: Vec<Inline>,
-    citationSuffix: Vec<Inline>,
-    citationMode: CitationMode,
-    citationNoteNum: Int,
-    citationHash: Int,
+    pub citationId: String,
+    pub citationPrefix: Vec<Inline>,
+    pub citationSuffix: Vec<Inline>,
+    pub citationMode: CitationMode,
+    pub citationNoteNum: Int,
+    pub citationHash: Int,
 }
 
 #[derive(Deserialize)]
