@@ -8,9 +8,11 @@ use serde::{Serialize, Serializer};
 pub type Int = i64;
 pub type Double = f64;
 
+/// the root object of a pandoc document
 #[derive(Serialize, Deserialize)]
 pub struct Pandoc(pub Meta, pub Vec<Block>);
 
+/// Metadata for the document: title, authors, date.
 #[derive(Serialize, Deserialize)]
 #[allow(non_snake_case)]
 pub struct Meta {
@@ -56,20 +58,34 @@ impl Serialize for MetaValue {
     }
 }
 
+/// Structured text like tables and lists
 #[derive(Deserialize)]
 pub enum Block {
+    /// Plain text, not a paragraph
     Plain(Vec<Inline>),
+    /// Paragraph
     Para(Vec<Inline>),
+    /// Code block (literal) with attributes
     CodeBlock(Attr, String),
     RawBlock(Format, String),
+    /// Block quote (list of blocks)
     BlockQuote(Vec<Block>),
+    /// Ordered list (attributes and a list of items, each a list of blocks)
     OrderedList(ListAttributes, Vec<Vec<Block>>),
+    /// Bullet list (list of items, each a list of blocks)
     BulletList(Vec<Vec<Block>>),
+    /// Definition list Each list item is a pair consisting of a term (a list of inlines)
+    /// and one or more definitions (each a list of blocks)
     DefinitionList(Vec<(Vec<Inline>, Vec<Vec<Block>>)>),
+    /// Header - level (integer) and text (inlines)
     Header(Int, Attr, Vec<Inline>),
     HorizontalRule,
+    /// Table, with caption, column alignments (required), relative column widths (0 = default),
+    /// column headers (each a list of blocks), and rows (each a list of lists of blocks)
     Table(Vec<Inline>, Vec<Alignment>, Vec<Double>, Vec<TableCell>, Vec<Vec<TableCell>>),
+    /// Generic block container with attributes
     Div(Attr, Vec<Block>),
+    /// Nothing
     Null,
 }
 
@@ -94,25 +110,39 @@ impl Serialize for Block {
     }
 }
 
+/// a single formatting item like bold, italic or hyperlink
 #[derive(Deserialize)]
 pub enum Inline {
+    /// Text
     Str(String),
+    /// Emphasized text
     Emph(Vec<Inline>),
+    /// Strongly emphasized text
     Strong(Vec<Inline>),
     Strikeout(Vec<Inline>),
     Superscript(Vec<Inline>),
     Subscript(Vec<Inline>),
     SmallCaps(Vec<Inline>),
+    /// Quoted text
     Quoted(QuoteType,Vec<Inline>),
+    /// Citation
     Cite(Vec<Citation>, Vec<Inline>),
+    /// Inline code (literal)
     Code(Attr, String),
+    /// Inter-word space
     Space,
+    /// Hard line break
     LineBreak,
+    /// TeX math (literal)
     Math(MathType, String),
     RawInline(Format, String),
+    /// Hyperlink: text (list of inlines), target
     Link(Vec<Inline>, Target),
+    /// Image: alt text (list of inlines), target
     Image(Vec<Inline>, Target),
+    /// Footnote or endnote
     Note(Vec<Block>),
+    /// Generic inline container with attributes
     Span(Attr, Vec<Inline>),
 }
 
@@ -142,6 +172,7 @@ impl Serialize for Inline {
     }
 }
 
+/// Alignment of a table column.
 #[derive(Deserialize)]
 pub enum Alignment {
     AlignLeft,
@@ -164,6 +195,7 @@ impl Serialize for Alignment {
 
 pub type ListAttributes = (Int, ListNumberStyle, ListNumberDelim);
 
+/// Style of list numbers.
 #[derive(Deserialize)]
 pub enum ListNumberStyle {
     DefaultStyle,
@@ -190,6 +222,7 @@ impl Serialize for ListNumberStyle {
     }
 }
 
+/// Delimiter of list numbers.
 #[derive(Deserialize)]
 pub enum ListNumberDelim {
     DefaultDelim,
@@ -210,13 +243,17 @@ impl Serialize for ListNumberDelim {
     }
 }
 
+/// Formats for raw blocks
 #[derive(Serialize, Deserialize)]
 pub struct Format(pub String);
 
+/// Attributes: identifier, classes, key-value pairs
 pub type Attr = (String, Vec<String>, Vec<(String, String)>);
 
+/// Table cells are list of Blocks
 pub type TableCell = Vec<Block>;
 
+/// Type of quotation marks to use in Quoted inline.
 #[derive(Deserialize)]
 pub enum QuoteType {
     SingleQuote,
@@ -251,8 +288,10 @@ impl Serialize for Unit {
     }
 }
 
+/// Link target (URL, title).
 pub type Target = (String, String);
 
+/// Type of math element (display or inline).
 #[derive(Deserialize)]
 pub enum MathType {
     DisplayMath,
@@ -326,6 +365,8 @@ fn pandoc_to_serde(data: &mut Value) {
     }
 }
 
+/// deserialized a json string to a Pandoc object, passes it to the closure/function
+/// and serializes the result back into a string
 pub fn filter<F: FnOnce(Pandoc)->Pandoc>(json: String, f: F) -> String {
     let mut data: Value = from_str(&json).unwrap();
     pandoc_to_serde(&mut data);
