@@ -48,10 +48,10 @@ impl Serialize for MetaValue {
     fn serialize<S>(&self, ser: &mut S) -> Result<(), S::Error> where S: Serializer {
         use self::MetaValue::*;
         match *self {
-            MetaMap(ref val) => seq!(ser, "MetaMap", vec![val]),
+            MetaMap(ref val) => seq!(ser, "MetaMap", val),
             MetaList(ref val) => seq!(ser, "MetaList", val),
-            MetaBool(ref val) => seq!(ser, "MetaBool", vec![val]),
-            MetaString(ref val) => seq!(ser, "MetaString", vec![val]),
+            MetaBool(ref val) => seq!(ser, "MetaBool", val),
+            MetaString(ref val) => seq!(ser, "MetaString", val),
             MetaInlines(ref val) => seq!(ser, "MetaInlines", val),
             MetaBlocks(ref val) => seq!(ser, "MetaBlocks", val),
         }
