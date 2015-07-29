@@ -2,6 +2,7 @@
 #![plugin(serde_macros)]
 
 extern crate serde;
+extern crate serde_json;
 
 pub use std::collections::BTreeMap as Map;
 use serde::{Serialize, Serializer};
@@ -336,7 +337,7 @@ impl Serialize for CitationMode {
         }
     }
 }
-use serde::json::{Value, from_str, to_string, from_value};
+use serde_json::{Value, from_str, to_string, from_value};
 
 fn pandoc_to_serde(data: &mut Value) {
     match *data {

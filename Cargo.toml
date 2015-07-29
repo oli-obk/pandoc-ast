@@ -11,3 +11,4 @@ description = "deserializes and serializes pandoc ast json"
 [dependencies]
 serde = {path = "../serde/serde"}
 serde_macros = {path = "../serde/serde_macros"}
+serde_json = {path = "../serde/serde_json"}
