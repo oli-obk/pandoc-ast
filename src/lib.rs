@@ -10,17 +10,17 @@ pub type Int = i64;
 pub type Double = f64;
 
 /// the root object of a pandoc document
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Pandoc(pub Meta, pub Vec<Block>);
 
 /// Metadata for the document: title, authors, date.
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 #[allow(non_snake_case)]
 pub struct Meta {
     pub unMeta: Map<String, MetaValue>,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum MetaValue {
     MetaMap(Map<String, Box<MetaValue>>),
     MetaList(Vec<MetaValue>),
@@ -60,7 +60,7 @@ impl Serialize for MetaValue {
 }
 
 /// Structured text like tables and lists
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum Block {
     /// Plain text, not a paragraph
     Plain(Vec<Inline>),
@@ -112,7 +112,7 @@ impl Serialize for Block {
 }
 
 /// a single formatting item like bold, italic or hyperlink
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum Inline {
     /// Text
     Str(String),
@@ -174,7 +174,7 @@ impl Serialize for Inline {
 }
 
 /// Alignment of a table column.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum Alignment {
     AlignLeft,
     AlignRight,
@@ -197,7 +197,7 @@ impl Serialize for Alignment {
 pub type ListAttributes = (Int, ListNumberStyle, ListNumberDelim);
 
 /// Style of list numbers.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum ListNumberStyle {
     DefaultStyle,
     Example,
@@ -224,7 +224,7 @@ impl Serialize for ListNumberStyle {
 }
 
 /// Delimiter of list numbers.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum ListNumberDelim {
     DefaultDelim,
     Period,
@@ -245,7 +245,7 @@ impl Serialize for ListNumberDelim {
 }
 
 /// Formats for raw blocks
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct Format(pub String);
 
 /// Attributes: identifier, classes, key-value pairs
@@ -255,7 +255,7 @@ pub type Attr = (String, Vec<String>, Vec<(String, String)>);
 pub type TableCell = Vec<Block>;
 
 /// Type of quotation marks to use in Quoted inline.
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum QuoteType {
     SingleQuote,
     DoubleQuote,
@@ -293,7 +293,7 @@ impl Serialize for Unit {
 pub type Target = (String, String);
 
 /// Type of math element (display or inline).
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum MathType {
     DisplayMath,
     InlineMath,
@@ -309,7 +309,7 @@ impl Serialize for MathType {
     }
 }
 
-#[derive(Serialize, Deserialize)]
+#[derive(Serialize, Deserialize, Debug)]
 #[allow(non_snake_case)]
 pub struct Citation {
     pub citationId: String,
@@ -320,7 +320,7 @@ pub struct Citation {
     pub citationHash: Int,
 }
 
-#[derive(Deserialize)]
+#[derive(Deserialize, Debug)]
 pub enum CitationMode {
     AuthorInText,
     SuppressAuthor,
