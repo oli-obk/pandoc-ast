@@ -369,9 +369,9 @@ fn pandoc_to_serde(data: &mut Value) {
 /// deserialized a json string to a Pandoc object, passes it to the closure/function
 /// and serializes the result back into a string
 pub fn filter<F: FnOnce(Pandoc)->Pandoc>(json: String, f: F) -> String {
-    let mut data: Value = from_str(&json).unwrap();
+    let mut data: Value = from_str(&json).ok().expect("invalid json");
     pandoc_to_serde(&mut data);
-    let data = from_value(data).unwrap();
+    let data = from_value(data).ok().expect("deserialization failed");
     let data = f(data);
-    to_string(&data).unwrap()
+    to_string(&data).ok().expect("serialization failed")
 }
