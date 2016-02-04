@@ -1,6 +1,6 @@
 [package]
 name = "pandoc_ast"
-version = "0.1.0"
+version = "0.2.0"
 authors = ["Oliver Schneider <rust-pandoc-ast885559849564@oli-obk.de>"]
 readme = "README.md"
 keywords = ["latex", "markdown", "pandoc", "filter", "ast"]
@@ -9,6 +9,6 @@ license-file = "LICENSE"
 description = "deserializes and serializes pandoc ast json"
 
 [dependencies]
-serde = "0.5"
-serde_macros = "0.5"
-serde_json = "0.5"
+serde = "0.6"
+serde_macros = "0.6"
+serde_json = "0.6"
