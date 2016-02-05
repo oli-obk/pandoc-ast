@@ -7,8 +7,12 @@ keywords = ["latex", "markdown", "pandoc", "filter", "ast"]
 repository = "https://github.com/oli-obk/rust-pandoc-ast"
 license-file = "LICENSE"
 description = "deserializes and serializes pandoc ast json"
+build = "build.rs"
 
 [dependencies]
 serde = "0.6"
-serde_macros = "0.6"
 serde_json = "0.6"
+
+[build-dependencies]
+serde_codegen = "*"
+syntex = "*"
