@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/oli-obk/pandoc-ast.svg?branch=master)](https://travis-ci.org/oli-obk/pandoc-ast)
+
 # Instructions
 
 Use in conjunction with the `pandoc` crate.
