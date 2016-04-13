@@ -28,3 +28,15 @@ fn block() {
         _ => panic!("not a rawinline"),
     }
 }
+
+#[test]
+fn citation() {
+    let s = r###"[{"unMeta":{}},[{"Para":[{"Cite":[[{"citationHash":1,"citationId":"scala_plugin","citationMode":{"NormalCitation":[]},"citationNoteNum":0,"citationPrefix":[],"citationSuffix":[]}],[{"Link":[["",[],[]],[{"Str":"1"}],["#ref-scala_plugin",""]]}]]}]}]]"###;
+    filter(s.to_string(), |x| x);
+}
+
+#[test]
+fn full_citation() {
+    let s = r###"[{"unMeta":{"bibliography":{"MetaString":"bibliography.bib"},"csl":{"MetaString":"springer-basic-brackets-no-et-al-alphabetical.csl"},"link-citations":{"MetaBool":true}}},[{"Para":[{"Cite":[[{"citationHash":1,"citationId":"scala_plugin","citationMode":{"NormalCitation":[]},"citationNoteNum":0,"citationPrefix":[],"citationSuffix":[]}],[{"Str":"["},{"Link":[["",[],[]],[{"Str":"1"}],["#ref-scala_plugin",""]]},{"Str":"]"}]]}]},{"Header":[1,["literatur",["unnumbered"],[]],[{"Str":"Literatur"}]]},{"Para":[{"Str":" "},{"LineBreak":[]}]},{"Div":[["refs",["references"],[]],[{"Div":[["ref-scala_plugin",[],[]],[{"Para":[{"Str":"1"},{"Link":[["",[],[]],[{"Str":"text"}],["addr",""]]},{"Str":"."},{"Space":[]}]}]]}]]}]]"###;
+    filter(s.to_string(), |x| x);
+}

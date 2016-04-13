@@ -126,15 +126,23 @@ pub enum Inline {
     Code(Attr, String),
     /// Inter-word space
     Space,
+    /// Soft line break
+    SoftBreak,
     /// Hard line break
     LineBreak,
     /// TeX math (literal)
     Math(MathType, String),
     RawInline(Format, String),
     /// Hyperlink: text (list of inlines), target
-    Link(Vec<Inline>, Target),
+    // "Link":[
+    //    ["",[],[]],
+    //    [{"Str":"1"}],
+    //    ["#ref-scala_plugin",""]
+    // ]
+
+    Link(Attr, Vec<Inline>, Target),
     /// Image: alt text (list of inlines), target
-    Image(Vec<Inline>, Target),
+    Image(Attr, Vec<Inline>, Target),
     /// Footnote or endnote
     Note(Vec<Block>),
     /// Generic inline container with attributes
@@ -156,11 +164,12 @@ impl Serialize for Inline {
             Cite(ref val, ref val2) => seq!(ser, "Cite", (val, val2)),
             Code(ref val, ref val2) => seq!(ser, "Code", (val, val2)),
             Space => seq!(ser, "Space", Unit),
+            SoftBreak => seq!(ser, "SoftBreak", Unit),
             LineBreak => seq!(ser, "LineBreak", Unit),
             Math(ref val, ref val2) => seq!(ser, "Math", (val, val2)),
             RawInline(ref val, ref val2) => seq!(ser, "RawInline", (val, val2)),
-            Link(ref val, ref val2) => seq!(ser, "Link", (val, val2)),
-            Image(ref val, ref val2) => seq!(ser, "Image", (val, val2)),
+            Link(ref attr, ref val, ref val2) => seq!(ser, "Link" , (attr, val, val2)),
+            Image(ref attr, ref val, ref val2) => seq!(ser, "Image" , (attr, val, val2)),
             Note(ref val) => seq!(ser, "Note", val),
             Span(ref val, ref val2) => seq!(ser, "Span", (val, val2)),
         }
@@ -365,6 +374,7 @@ fn pandoc_to_serde(data: &mut Value) {
 pub fn filter<F: FnOnce(Pandoc)->Pandoc>(json: String, f: F) -> String {
     let mut data: Value = from_str(&json).expect("invalid json");
     pandoc_to_serde(&mut data);
+    println!("{:?}", data);
     let data = from_value(data).expect("deserialization failed");
     let data = f(data);
     to_string(&data).expect("serialization failed")
