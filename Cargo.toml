@@ -1,6 +1,6 @@
 [package]
 name = "pandoc_ast"
-version = "0.2.0"
+version = "0.2.1"
 authors = ["Oliver Schneider <rust-pandoc-ast885559849564@oli-obk.de>"]
 readme = "README.md"
 keywords = ["latex", "markdown", "pandoc", "filter", "ast"]
@@ -14,5 +14,5 @@ serde = "0.6"
 serde_json = "0.6"
 
 [build-dependencies]
-serde_codegen = "*"
-syntex = "*"
+serde_codegen = "0.6"
+syntex = "0.29"
