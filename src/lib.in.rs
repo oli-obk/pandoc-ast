@@ -374,7 +374,6 @@ fn pandoc_to_serde(data: &mut Value) {
 pub fn filter<F: FnOnce(Pandoc)->Pandoc>(json: String, f: F) -> String {
     let mut data: Value = from_str(&json).expect("invalid json");
     pandoc_to_serde(&mut data);
-    println!("{:?}", data);
     let data = from_value(data).expect("deserialization failed");
     let data = f(data);
     to_string(&data).expect("serialization failed")
