@@ -1,10 +1,11 @@
 [package]
 name = "pandoc_ast"
-version = "0.3.2"
+version = "0.3.4"
 authors = ["Oliver Schneider <rust-pandoc-ast885559849564@oli-obk.de>"]
 readme = "README.md"
 keywords = ["latex", "markdown", "pandoc", "filter", "ast"]
 repository = "https://github.com/oli-obk/pandoc-ast"
+documentation = "https://oli-obk.github.io/pandoc-ast/"
 license-file = "LICENSE"
 description = "deserializes and serializes pandoc ast json"
 build = "build.rs"
