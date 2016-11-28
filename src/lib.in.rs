@@ -5,13 +5,11 @@ pub type Double = f64;
 
 /// the root object of a pandoc document
 #[derive(Serialize, Deserialize, Debug)]
-pub struct Pandoc(pub Meta, pub Vec<Block>);
-
-/// Metadata for the document: title, authors, date.
-#[derive(Serialize, Deserialize, Debug)]
-#[allow(non_snake_case)]
-pub struct Meta {
-    pub unMeta: Map<String, MetaValue>,
+pub struct Pandoc {
+    pub meta: Map<String, MetaValue>,
+    pub blocks: Vec<Block>,
+    #[serde(rename="pandoc-api-version")]
+    pub pandoc_api_version: Vec<u32>,
 }
 
 #[derive(Deserialize, Debug)]
@@ -342,7 +340,8 @@ impl Serialize for CitationMode {
 }
 use serde_json::{Value, from_str, to_string, from_value};
 
-fn pandoc_to_serde(data: &mut Value) {
+#[doc(hidden)]
+pub fn pandoc_to_serde(data: &mut Value) {
     match *data {
         Value::Array(ref mut vec) => {
             for el in vec {
@@ -350,7 +349,7 @@ fn pandoc_to_serde(data: &mut Value) {
             }
         }
         Value::Object(ref mut map) => {
-            if map.len() != 2 || !map.contains_key("c") || !map.contains_key("t") {
+            if !map.contains_key("t") {
                 for (_, v) in map {
                     pandoc_to_serde(v);
                 }
@@ -358,9 +357,12 @@ fn pandoc_to_serde(data: &mut Value) {
             }
             let t = map.remove("t").unwrap();
             if let Value::String(s) = t {
-                let mut c = map.remove("c").unwrap();
-                pandoc_to_serde(&mut c);
-                map.insert(s, c);
+                if let Some(mut c) = map.remove("c") {
+                    pandoc_to_serde(&mut c);
+                    map.insert(s, c);
+                } else {
+                    map.insert(s, Value::Null);
+                }
             } else {
                 unimplemented!()
             }
@@ -374,7 +376,8 @@ fn pandoc_to_serde(data: &mut Value) {
 pub fn filter<F: FnOnce(Pandoc)->Pandoc>(json: String, f: F) -> String {
     let mut data: Value = from_str(&json).expect("invalid json");
     pandoc_to_serde(&mut data);
-    let data = from_value(data).expect("deserialization failed");
+    let data: Pandoc = from_value(data).expect("deserialization failed");
+    assert_eq!(data.pandoc_api_version[0..2], [1, 17], "please file a bug report against `pandoc-ast` to update for the newest pandoc version");
     let data = f(data);
     to_string(&data).expect("serialization failed")
 }
