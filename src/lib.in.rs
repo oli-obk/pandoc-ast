@@ -58,6 +58,8 @@ pub enum Block {
     Plain(Vec<Inline>),
     /// Paragraph
     Para(Vec<Inline>),
+    /// Multiple non-breaking lines
+    LineBlock(Vec<Vec<Inline>>),
     /// Code block (literal) with attributes
     CodeBlock(Attr, String),
     RawBlock(Format, String),
@@ -88,6 +90,7 @@ impl Serialize for Block {
         match *self {
             Plain(ref val) => seq!(ser, "Plain", val),
             Para(ref val) => seq!(ser, "Para", val),
+            LineBlock(ref val) => seq!(ser, "LineBlock", val),
             CodeBlock(ref val, ref val2) => seq!(ser, "CodeBlock", (val, val2)),
             RawBlock(ref val, ref val2) => seq!(ser, "RawBlock", (val, val2)),
             BlockQuote(ref val) => seq!(ser, "BlockQuote", val),
