@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Invoke` trait in crate `syn`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Invoke">
+
+    <title>syn::aster::invoke::Invoke - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../../../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='../../index.html'>syn</a>::<wbr><a href='../index.html'>aster</a>::<wbr><a href='index.html'>invoke</a></p><script>window.sidebarCurrent = {name: 'Invoke', ty: 'trait', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content trait">
+<h1 class='fqn'><span class='in-band'>Trait <a href='../../index.html'>syn</a>::<wbr><a href='../index.html'>aster</a>::<wbr><a href='index.html'>invoke</a>::<wbr><a class='trait' href=''>Invoke</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../../../src/syn/aster/invoke.rs.html#1-5' title='goto source code'>[src]</a></span></h1>
+<pre class='rust trait'>pub trait Invoke&lt;A&gt; {
+    type <a href='#associatedtype.Result' class='type'>Result</a>;
+    fn <a href='#tymethod.invoke' class='fnname'>invoke</a>(self, arg: A) -&gt; Self::<a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Result</a>;
+}</pre>
+            <h2 id='associated-types'>Associated Types</h2>
+            <div class='methods'>
+        <h3 id='associatedtype.Result' class='method stab '><span id='Result.t' class='invisible'><code>type <a href='#associatedtype.Result' class='type'>Result</a></code></span></h3></div>
+            <h2 id='required-methods'>Required Methods</h2>
+            <div class='methods'>
+        <h3 id='tymethod.invoke' class='method stab '><span id='invoke.v' class='invisible'><code>fn <a href='#tymethod.invoke' class='fnname'>invoke</a>(self, arg: A) -&gt; Self::<a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Result</a></code></span></h3></div>
+        <h2 id='implementors'>Implementors</h2>
+        <ul class='item-list' id='implementors-list'>
+    <li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.LifetimeDef.html' title='syn::LifetimeDef'>LifetimeDef</a>&gt; for <a class='struct' href='../../../syn/aster/generics/struct.GenericsBuilder.html' title='syn::aster::generics::GenericsBuilder'>GenericsBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.Generics.html' title='syn::Generics'>Generics</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.TyParam.html' title='syn::TyParam'>TyParam</a>&gt; for <a class='struct' href='../../../syn/aster/generics/struct.GenericsBuilder.html' title='syn::aster::generics::GenericsBuilder'>GenericsBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.Generics.html' title='syn::Generics'>Generics</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.WherePredicate.html' title='syn::WherePredicate'>WherePredicate</a>&gt; for <a class='struct' href='../../../syn/aster/generics/struct.GenericsBuilder.html' title='syn::aster::generics::GenericsBuilder'>GenericsBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.Generics.html' title='syn::Generics'>Generics</a>&gt;</span></code></li>
+<li><code>impl&lt;A&gt; Invoke&lt;A&gt; for <a class='struct' href='../../../syn/aster/invoke/struct.Identity.html' title='syn::aster::invoke::Identity'>Identity</a></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.PathSegment.html' title='syn::PathSegment'>PathSegment</a>&gt; for <a class='struct' href='../../../syn/aster/path/struct.PathSegmentsBuilder.html' title='syn::aster::path::PathSegmentsBuilder'>PathSegmentsBuilder</a>&lt;F&gt;</code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/path/struct.PathSegmentBuilder.html' title='syn::aster::path::PathSegmentBuilder'>PathSegmentBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.PathSegment.html' title='syn::PathSegment'>PathSegment</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/path/struct.TypeBindingBuilder.html' title='syn::aster::path::TypeBindingBuilder'>TypeBindingBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.PathSegment.html' title='syn::PathSegment'>PathSegment</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/path/struct.PathSegmentReturnBuilder.html' title='syn::aster::path::PathSegmentReturnBuilder'>PathSegmentReturnBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.PathSegment.html' title='syn::PathSegment'>PathSegment</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/qpath/struct.QPathBuilder.html' title='syn::aster::qpath::QPathBuilder'>QPathBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='../../../syn/struct.QSelf.html' title='syn::QSelf'>QSelf</a>, <a class='struct' href='../../../syn/struct.Path.html' title='syn::Path'>Path</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.Path.html' title='syn::Path'>Path</a>&gt; for <a class='struct' href='../../../syn/aster/qpath/struct.QPathTyBuilder.html' title='syn::aster::qpath::QPathTyBuilder'>QPathTyBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='../../../syn/struct.QSelf.html' title='syn::QSelf'>QSelf</a>, <a class='struct' href='../../../syn/struct.Path.html' title='syn::Path'>Path</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.PathSegment.html' title='syn::PathSegment'>PathSegment</a>&gt; for <a class='struct' href='../../../syn/aster/qpath/struct.QPathQSelfBuilder.html' title='syn::aster::qpath::QPathQSelfBuilder'>QPathQSelfBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='../../../syn/struct.QSelf.html' title='syn::QSelf'>QSelf</a>, <a class='struct' href='../../../syn/struct.Path.html' title='syn::Path'>Path</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.Path.html' title='syn::Path'>Path</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyPathBuilder.html' title='syn::aster::ty::TyPathBuilder'>TyPathBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='../../../syn/struct.QSelf.html' title='syn::QSelf'>QSelf</a>, <a class='struct' href='../../../syn/struct.Path.html' title='syn::Path'>Path</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyQPathBuilder.html' title='syn::aster::ty::TyQPathBuilder'>TyQPathBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TySliceBuilder.html' title='syn::aster::ty::TySliceBuilder'>TySliceBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyRefBuilder.html' title='syn::aster::ty::TyRefBuilder'>TyRefBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyOptionBuilder.html' title='syn::aster::ty::TyOptionBuilder'>TyOptionBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyResultOkBuilder.html' title='syn::aster::ty::TyResultOkBuilder'>TyResultOkBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyResultErrBuilder.html' title='syn::aster::ty::TyResultErrBuilder'>TyResultErrBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyPhantomDataBuilder.html' title='syn::aster::ty::TyPhantomDataBuilder'>TyPhantomDataBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyBoxBuilder.html' title='syn::aster::ty::TyBoxBuilder'>TyBoxBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyIteratorBuilder.html' title='syn::aster::ty::TyIteratorBuilder'>TyIteratorBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.TyParamBound.html' title='syn::TyParamBound'>TyParamBound</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyImplTraitTyBuilder.html' title='syn::aster::ty::TyImplTraitTyBuilder'>TyImplTraitTyBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty/struct.TyTupleBuilder.html' title='syn::aster::ty::TyTupleBuilder'>TyTupleBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/ty_param/struct.TyParamBuilder.html' title='syn::aster::ty_param::TyParamBuilder'>TyParamBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.TyParam.html' title='syn::TyParam'>TyParam</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.TyParamBound.html' title='syn::TyParamBound'>TyParamBound</a>&gt; for <a class='struct' href='../../../syn/aster/ty_param/struct.TyParamBuilder.html' title='syn::aster::ty_param::TyParamBuilder'>TyParamBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.TyParam.html' title='syn::TyParam'>TyParam</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.PolyTraitRef.html' title='syn::PolyTraitRef'>PolyTraitRef</a>&gt; for <a class='struct' href='../../../syn/aster/ty_param/struct.TyParamBuilder.html' title='syn::aster::ty_param::TyParamBuilder'>TyParamBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.TyParam.html' title='syn::TyParam'>TyParam</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.PolyTraitRef.html' title='syn::PolyTraitRef'>PolyTraitRef</a>&gt; for <a class='struct' href='../../../syn/aster/ty_param/struct.TraitTyParamBoundBuilder.html' title='syn::aster::ty_param::TraitTyParamBoundBuilder'>TraitTyParamBoundBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.TyParamBound.html' title='syn::TyParamBound'>TyParamBound</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.LifetimeDef.html' title='syn::LifetimeDef'>LifetimeDef</a>&gt; for <a class='struct' href='../../../syn/aster/ty_param/struct.PolyTraitRefBuilder.html' title='syn::aster::ty_param::PolyTraitRefBuilder'>PolyTraitRefBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='struct' href='../../../syn/struct.PolyTraitRef.html' title='syn::PolyTraitRef'>PolyTraitRef</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/where_predicate/struct.WherePredicateBuilder.html' title='syn::aster::where_predicate::WherePredicateBuilder'>WherePredicateBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.WherePredicate.html' title='syn::WherePredicate'>WherePredicate</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.Ty.html' title='syn::Ty'>Ty</a>&gt; for <a class='struct' href='../../../syn/aster/where_predicate/struct.WhereBoundPredicateBuilder.html' title='syn::aster::where_predicate::WhereBoundPredicateBuilder'>WhereBoundPredicateBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.WherePredicate.html' title='syn::WherePredicate'>WherePredicate</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.LifetimeDef.html' title='syn::LifetimeDef'>LifetimeDef</a>&gt; for <a class='struct' href='../../../syn/aster/where_predicate/struct.WhereBoundPredicateTyBuilder.html' title='syn::aster::where_predicate::WhereBoundPredicateTyBuilder'>WhereBoundPredicateTyBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.WherePredicate.html' title='syn::WherePredicate'>WherePredicate</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.TyParamBound.html' title='syn::TyParamBound'>TyParamBound</a>&gt; for <a class='struct' href='../../../syn/aster/where_predicate/struct.WhereBoundPredicateTyBuilder.html' title='syn::aster::where_predicate::WhereBoundPredicateTyBuilder'>WhereBoundPredicateTyBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.WherePredicate.html' title='syn::WherePredicate'>WherePredicate</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='struct' href='../../../syn/struct.LifetimeDef.html' title='syn::LifetimeDef'>LifetimeDef</a>&gt; for <a class='struct' href='../../../syn/aster/where_predicate/struct.WhereBoundPredicateTyBoundsBuilder.html' title='syn::aster::where_predicate::WhereBoundPredicateTyBoundsBuilder'>WhereBoundPredicateTyBoundsBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.WherePredicate.html' title='syn::WherePredicate'>WherePredicate</a>&gt;</span></code></li>
+<li><code>impl&lt;F&gt; Invoke&lt;<a class='enum' href='../../../syn/enum.TyParamBound.html' title='syn::TyParamBound'>TyParamBound</a>&gt; for <a class='struct' href='../../../syn/aster/where_predicate/struct.WhereBoundPredicateTyBoundsBuilder.html' title='syn::aster::where_predicate::WhereBoundPredicateTyBoundsBuilder'>WhereBoundPredicateTyBoundsBuilder</a>&lt;F&gt; <span class='where'>where F: <a class='trait' href='../../../syn/aster/invoke/trait.Invoke.html' title='syn::aster::invoke::Invoke'>Invoke</a>&lt;<a class='enum' href='../../../syn/enum.WherePredicate.html' title='syn::WherePredicate'>WherePredicate</a>&gt;</span></code></li>
+</ul><script type="text/javascript" async
+                         src="../../../implementors/syn/aster/invoke/trait.Invoke.js">
+                 </script></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../../../";
+        window.currentCrate = "syn";
+    </script>
+    <script src="../../../jquery.js"></script>
+    <script src="../../../main.js"></script>
+    <script defer src="../../../search-index.js"></script>
+</body>
+</html>

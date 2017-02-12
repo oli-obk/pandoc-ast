@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `pandoc_ast` crate.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, pandoc_ast">
+
+    <title>pandoc_ast - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'></p><script>window.sidebarCurrent = {name: 'pandoc_ast', ty: 'mod', relpath: '../'};</script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content mod">
+<h1 class='fqn'><span class='in-band'>Crate <a class='mod' href=''>pandoc_ast</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/pandoc_ast/lib.rs.html#1-202' title='goto source code'>[src]</a></span></h1>
+<h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.Citation.html'
+                                  title='pandoc_ast::Citation'>Citation</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.Format.html'
+                                  title='pandoc_ast::Format'>Format</a></td>
+                           <td class='docblock-short'>
+                                <p>Formats for raw blocks</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.Map.html'
+                                  title='pandoc_ast::Map'>Map</a></td>
+                           <td class='docblock-short'>
+                                <p>A map based on a B-Tree.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='struct' href='struct.Pandoc.html'
+                                  title='pandoc_ast::Pandoc'>Pandoc</a></td>
+                           <td class='docblock-short'>
+                                <p>the root object of a pandoc document</p>
+                           </td>
+                       </tr></table><h2 id='enums' class='section-header'><a href="#enums">Enums</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.Alignment.html'
+                                  title='pandoc_ast::Alignment'>Alignment</a></td>
+                           <td class='docblock-short'>
+                                <p>Alignment of a table column.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.Block.html'
+                                  title='pandoc_ast::Block'>Block</a></td>
+                           <td class='docblock-short'>
+                                <p>Structured text like tables and lists</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.CitationMode.html'
+                                  title='pandoc_ast::CitationMode'>CitationMode</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.Inline.html'
+                                  title='pandoc_ast::Inline'>Inline</a></td>
+                           <td class='docblock-short'>
+                                <p>a single formatting item like bold, italic or hyperlink</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.ListNumberDelim.html'
+                                  title='pandoc_ast::ListNumberDelim'>ListNumberDelim</a></td>
+                           <td class='docblock-short'>
+                                <p>Delimiter of list numbers.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.ListNumberStyle.html'
+                                  title='pandoc_ast::ListNumberStyle'>ListNumberStyle</a></td>
+                           <td class='docblock-short'>
+                                <p>Style of list numbers.</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.MathType.html'
+                                  title='pandoc_ast::MathType'>MathType</a></td>
+                           <td class='docblock-short'>
+                                <p>Type of math element (display or inline).</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.MetaValue.html'
+                                  title='pandoc_ast::MetaValue'>MetaValue</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='enum' href='enum.QuoteType.html'
+                                  title='pandoc_ast::QuoteType'>QuoteType</a></td>
+                           <td class='docblock-short'>
+                                <p>Type of quotation marks to use in Quoted inline.</p>
+                           </td>
+                       </tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='fn' href='fn.filter.html'
+                                  title='pandoc_ast::filter'>filter</a></td>
+                           <td class='docblock-short'>
+                                <p>deserialized a json string to a Pandoc object, passes it to the closure/function
+and serializes the result back into a string</p>
+                           </td>
+                       </tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.Attr.html'
+                                  title='pandoc_ast::Attr'>Attr</a></td>
+                           <td class='docblock-short'>
+                                <p>Attributes: identifier, classes, key-value pairs</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.Double.html'
+                                  title='pandoc_ast::Double'>Double</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.Int.html'
+                                  title='pandoc_ast::Int'>Int</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.ListAttributes.html'
+                                  title='pandoc_ast::ListAttributes'>ListAttributes</a></td>
+                           <td class='docblock-short'>
+                                
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.TableCell.html'
+                                  title='pandoc_ast::TableCell'>TableCell</a></td>
+                           <td class='docblock-short'>
+                                <p>Table cells are list of Blocks</p>
+                           </td>
+                       </tr>
+                       <tr class=' module-item'>
+                           <td><a class='type' href='type.Target.html'
+                                  title='pandoc_ast::Target'>Target</a></td>
+                           <td class='docblock-short'>
+                                <p>Link target (URL, title).</p>
+                           </td>
+                       </tr></table></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "pandoc_ast";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

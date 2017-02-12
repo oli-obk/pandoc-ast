@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `MetaValue` enum in crate `pandoc_ast`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, MetaValue">
+
+    <title>pandoc_ast::MetaValue - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>pandoc_ast</a></p><script>window.sidebarCurrent = {name: 'MetaValue', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>pandoc_ast</a>::<wbr><a class='enum' href=''>MetaValue</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/pandoc_ast/lib.rs.html#19-26' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum MetaValue {
+    MetaMap {
+        c: <a class='struct' href='../pandoc_ast/struct.Map.html' title='pandoc_ast::Map'>Map</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='enum' href='../pandoc_ast/enum.MetaValue.html' title='pandoc_ast::MetaValue'>MetaValue</a>&gt;&gt;,
+    },
+    MetaList {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.MetaValue.html' title='pandoc_ast::MetaValue'>MetaValue</a>&gt;,
+    },
+    MetaBool {
+        c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a>,
+    },
+    MetaString {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>,
+    },
+    MetaInlines {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;,
+    },
+    MetaBlocks {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;,
+    },
+}</pre><h2 class='variants'>Variants</h2>
+<span id='variant.MetaMap' class='variant'><span id='MetaMap.v' class='invisible'><code>MetaMap</code></span></span><span class='docblock autohide sub-variant' id='variant.MetaMap.fields'><h3 class='fields'>Fields of <code>MetaMap</code></h3>
+
+                           <table><tr><td id='variant.MetaMap.field.c'><span id='MetaMap.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='../pandoc_ast/struct.Map.html' title='pandoc_ast::Map'>Map</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/alloc/boxed/struct.Box.html' title='alloc::boxed::Box'>Box</a>&lt;<a class='enum' href='../pandoc_ast/enum.MetaValue.html' title='pandoc_ast::MetaValue'>MetaValue</a>&gt;&gt;</code></span></td><td></td></tr></table></span><span id='variant.MetaList' class='variant'><span id='MetaList.v' class='invisible'><code>MetaList</code></span></span><span class='docblock autohide sub-variant' id='variant.MetaList.fields'><h3 class='fields'>Fields of <code>MetaList</code></h3>
+
+                           <table><tr><td id='variant.MetaList.field.c'><span id='MetaList.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.MetaValue.html' title='pandoc_ast::MetaValue'>MetaValue</a>&gt;</code></span></td><td></td></tr></table></span><span id='variant.MetaBool' class='variant'><span id='MetaBool.v' class='invisible'><code>MetaBool</code></span></span><span class='docblock autohide sub-variant' id='variant.MetaBool.fields'><h3 class='fields'>Fields of <code>MetaBool</code></h3>
+
+                           <table><tr><td id='variant.MetaBool.field.c'><span id='MetaBool.v.c.v' class='invisible'><code>c:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.bool.html'>bool</a></code></span></td><td></td></tr></table></span><span id='variant.MetaString' class='variant'><span id='MetaString.v' class='invisible'><code>MetaString</code></span></span><span class='docblock autohide sub-variant' id='variant.MetaString.fields'><h3 class='fields'>Fields of <code>MetaString</code></h3>
+
+                           <table><tr><td id='variant.MetaString.field.c'><span id='MetaString.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a></code></span></td><td></td></tr></table></span><span id='variant.MetaInlines' class='variant'><span id='MetaInlines.v' class='invisible'><code>MetaInlines</code></span></span><span class='docblock autohide sub-variant' id='variant.MetaInlines.fields'><h3 class='fields'>Fields of <code>MetaInlines</code></h3>
+
+                           <table><tr><td id='variant.MetaInlines.field.c'><span id='MetaInlines.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;</code></span></td><td></td></tr></table></span><span id='variant.MetaBlocks' class='variant'><span id='MetaBlocks.v' class='invisible'><code>MetaBlocks</code></span></span><span class='docblock autohide sub-variant' id='variant.MetaBlocks.fields'><h3 class='fields'>Fields of <code>MetaBlocks</code></h3>
+
+                           <table><tr><td id='variant.MetaBlocks.field.c'><span id='MetaBlocks.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;</code></span></td><td></td></tr></table></span><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../pandoc_ast/enum.MetaValue.html' title='pandoc_ast::MetaValue'>MetaValue</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/pandoc_ast/lib.rs.html#17' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "pandoc_ast";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>

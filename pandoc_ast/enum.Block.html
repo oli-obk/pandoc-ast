@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="rustdoc">
+    <meta name="description" content="API documentation for the Rust `Block` enum in crate `pandoc_ast`.">
+    <meta name="keywords" content="rust, rustlang, rust-lang, Block">
+
+    <title>pandoc_ast::Block - Rust</title>
+
+    <link rel="stylesheet" type="text/css" href="../rustdoc.css">
+    <link rel="stylesheet" type="text/css" href="../main.css">
+    
+
+    
+    
+</head>
+<body class="rustdoc">
+    <!--[if lte IE 8]>
+    <div class="warning">
+        This old browser is unsupported and will most likely display funky
+        things.
+    </div>
+    <![endif]-->
+
+    
+
+    <nav class="sidebar">
+        
+        <p class='location'><a href='index.html'>pandoc_ast</a></p><script>window.sidebarCurrent = {name: 'Block', ty: 'enum', relpath: ''};</script><script defer src="sidebar-items.js"></script>
+    </nav>
+
+    <nav class="sub">
+        <form class="search-form js-only">
+            <div class="search-container">
+                <input class="search-input" name="search"
+                       autocomplete="off"
+                       placeholder="Click or press ‘S’ to search, ‘?’ for more options…"
+                       type="search">
+            </div>
+        </form>
+    </nav>
+
+    <section id='main' class="content enum">
+<h1 class='fqn'><span class='in-band'>Enum <a href='index.html'>pandoc_ast</a>::<wbr><a class='enum' href=''>Block</a></span><span class='out-of-band'><span id='render-detail'>
+                   <a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">
+                       [<span class='inner'>&#x2212;</span>]
+                   </a>
+               </span><a class='srclink' href='../src/pandoc_ast/lib.rs.html#31-60' title='goto source code'>[src]</a></span></h1>
+<pre class='rust enum'>pub enum Block {
+    Plain {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;,
+    },
+    Para {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;,
+    },
+    LineBlock {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;&gt;,
+    },
+    CodeBlock {
+        c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../pandoc_ast/type.Attr.html' title='pandoc_ast::Attr'>Attr</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,
+    },
+    RawBlock {
+        c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='../pandoc_ast/struct.Format.html' title='pandoc_ast::Format'>Format</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,
+    },
+    BlockQuote {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;,
+    },
+    OrderedList {
+        c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../pandoc_ast/type.ListAttributes.html' title='pandoc_ast::ListAttributes'>ListAttributes</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,
+    },
+    BulletList {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;&gt;,
+    },
+    DefinitionList {
+        c: <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;,
+    },
+    Header {
+        c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../pandoc_ast/type.Int.html' title='pandoc_ast::Int'>Int</a>, <a class='type' href='../pandoc_ast/type.Attr.html' title='pandoc_ast::Attr'>Attr</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,
+    },
+    HorizontalRule,
+    Table {
+        c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Alignment.html' title='pandoc_ast::Alignment'>Alignment</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../pandoc_ast/type.Double.html' title='pandoc_ast::Double'>Double</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../pandoc_ast/type.TableCell.html' title='pandoc_ast::TableCell'>TableCell</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../pandoc_ast/type.TableCell.html' title='pandoc_ast::TableCell'>TableCell</a>&gt;&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,
+    },
+    Div {
+        c: <a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../pandoc_ast/type.Attr.html' title='pandoc_ast::Attr'>Attr</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>,
+    },
+    Null,
+}</pre><div class='docblock'><p>Structured text like tables and lists</p>
+</div><h2 class='variants'>Variants</h2>
+<span id='variant.Plain' class='variant'><span id='Plain.v' class='invisible'><code>Plain</code></span></span><div class='docblock'><p>Plain text, not a paragraph</p>
+</div><span class='docblock autohide sub-variant' id='variant.Plain.fields'><h3 class='fields'>Fields of <code>Plain</code></h3>
+
+                           <table><tr><td id='variant.Plain.field.c'><span id='Plain.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;</code></span></td><td></td></tr></table></span><span id='variant.Para' class='variant'><span id='Para.v' class='invisible'><code>Para</code></span></span><div class='docblock'><p>Paragraph</p>
+</div><span class='docblock autohide sub-variant' id='variant.Para.fields'><h3 class='fields'>Fields of <code>Para</code></h3>
+
+                           <table><tr><td id='variant.Para.field.c'><span id='Para.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;</code></span></td><td></td></tr></table></span><span id='variant.LineBlock' class='variant'><span id='LineBlock.v' class='invisible'><code>LineBlock</code></span></span><div class='docblock'><p>Multiple non-breaking lines</p>
+</div><span class='docblock autohide sub-variant' id='variant.LineBlock.fields'><h3 class='fields'>Fields of <code>LineBlock</code></h3>
+
+                           <table><tr><td id='variant.LineBlock.field.c'><span id='LineBlock.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;&gt;</code></span></td><td></td></tr></table></span><span id='variant.CodeBlock' class='variant'><span id='CodeBlock.v' class='invisible'><code>CodeBlock</code></span></span><div class='docblock'><p>Code block (literal) with attributes</p>
+</div><span class='docblock autohide sub-variant' id='variant.CodeBlock.fields'><h3 class='fields'>Fields of <code>CodeBlock</code></h3>
+
+                           <table><tr><td id='variant.CodeBlock.field.c'><span id='CodeBlock.v.c.v' class='invisible'><code>c:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../pandoc_ast/type.Attr.html' title='pandoc_ast::Attr'>Attr</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></span></td><td></td></tr></table></span><span id='variant.RawBlock' class='variant'><span id='RawBlock.v' class='invisible'><code>RawBlock</code></span></span><span class='docblock autohide sub-variant' id='variant.RawBlock.fields'><h3 class='fields'>Fields of <code>RawBlock</code></h3>
+
+                           <table><tr><td id='variant.RawBlock.field.c'><span id='RawBlock.v.c.v' class='invisible'><code>c:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='../pandoc_ast/struct.Format.html' title='pandoc_ast::Format'>Format</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/string/struct.String.html' title='collections::string::String'>String</a><a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></span></td><td></td></tr></table></span><span id='variant.BlockQuote' class='variant'><span id='BlockQuote.v' class='invisible'><code>BlockQuote</code></span></span><div class='docblock'><p>Block quote (list of blocks)</p>
+</div><span class='docblock autohide sub-variant' id='variant.BlockQuote.fields'><h3 class='fields'>Fields of <code>BlockQuote</code></h3>
+
+                           <table><tr><td id='variant.BlockQuote.field.c'><span id='BlockQuote.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;</code></span></td><td></td></tr></table></span><span id='variant.OrderedList' class='variant'><span id='OrderedList.v' class='invisible'><code>OrderedList</code></span></span><div class='docblock'><p>Ordered list (attributes and a list of items, each a list of blocks)</p>
+</div><span class='docblock autohide sub-variant' id='variant.OrderedList.fields'><h3 class='fields'>Fields of <code>OrderedList</code></h3>
+
+                           <table><tr><td id='variant.OrderedList.field.c'><span id='OrderedList.v.c.v' class='invisible'><code>c:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../pandoc_ast/type.ListAttributes.html' title='pandoc_ast::ListAttributes'>ListAttributes</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></span></td><td></td></tr></table></span><span id='variant.BulletList' class='variant'><span id='BulletList.v' class='invisible'><code>BulletList</code></span></span><div class='docblock'><p>Bullet list (list of items, each a list of blocks)</p>
+</div><span class='docblock autohide sub-variant' id='variant.BulletList.fields'><h3 class='fields'>Fields of <code>BulletList</code></h3>
+
+                           <table><tr><td id='variant.BulletList.field.c'><span id='BulletList.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;&gt;</code></span></td><td></td></tr></table></span><span id='variant.DefinitionList' class='variant'><span id='DefinitionList.v' class='invisible'><code>DefinitionList</code></span></span><div class='docblock'><p>Definition list Each list item is a pair consisting of a term (a list of inlines)
+and one or more definitions (each a list of blocks)</p>
+</div><span class='docblock autohide sub-variant' id='variant.DefinitionList.fields'><h3 class='fields'>Fields of <code>DefinitionList</code></h3>
+
+                           <table><tr><td id='variant.DefinitionList.field.c'><span id='DefinitionList.v.c.v' class='invisible'><code>c:&nbsp;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a>&gt;</code></span></td><td></td></tr></table></span><span id='variant.Header' class='variant'><span id='Header.v' class='invisible'><code>Header</code></span></span><div class='docblock'><p>Header - level (integer) and text (inlines)</p>
+</div><span class='docblock autohide sub-variant' id='variant.Header.fields'><h3 class='fields'>Fields of <code>Header</code></h3>
+
+                           <table><tr><td id='variant.Header.field.c'><span id='Header.v.c.v' class='invisible'><code>c:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../pandoc_ast/type.Int.html' title='pandoc_ast::Int'>Int</a>, <a class='type' href='../pandoc_ast/type.Attr.html' title='pandoc_ast::Attr'>Attr</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></span></td><td></td></tr></table></span><span id='variant.HorizontalRule' class='variant'><span id='HorizontalRule.v' class='invisible'><code>HorizontalRule</code></span></span><span id='variant.Table' class='variant'><span id='Table.v' class='invisible'><code>Table</code></span></span><div class='docblock'><p>Table, with caption, column alignments (required), relative column widths (0 = default),
+column headers (each a list of blocks), and rows (each a list of lists of blocks)</p>
+</div><span class='docblock autohide sub-variant' id='variant.Table.fields'><h3 class='fields'>Fields of <code>Table</code></h3>
+
+                           <table><tr><td id='variant.Table.field.c'><span id='Table.v.c.v' class='invisible'><code>c:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Inline.html' title='pandoc_ast::Inline'>Inline</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Alignment.html' title='pandoc_ast::Alignment'>Alignment</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../pandoc_ast/type.Double.html' title='pandoc_ast::Double'>Double</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../pandoc_ast/type.TableCell.html' title='pandoc_ast::TableCell'>TableCell</a>&gt;, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='type' href='../pandoc_ast/type.TableCell.html' title='pandoc_ast::TableCell'>TableCell</a>&gt;&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></span></td><td></td></tr></table></span><span id='variant.Div' class='variant'><span id='Div.v' class='invisible'><code>Div</code></span></span><div class='docblock'><p>Generic block container with attributes</p>
+</div><span class='docblock autohide sub-variant' id='variant.Div.fields'><h3 class='fields'>Fields of <code>Div</code></h3>
+
+                           <table><tr><td id='variant.Div.field.c'><span id='Div.v.c.v' class='invisible'><code>c:&nbsp;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>(</a><a class='type' href='../pandoc_ast/type.Attr.html' title='pandoc_ast::Attr'>Attr</a>, <a class='struct' href='https://doc.rust-lang.org/nightly/collections/vec/struct.Vec.html' title='collections::vec::Vec'>Vec</a>&lt;<a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a>&gt;<a class='primitive' href='https://doc.rust-lang.org/nightly/std/primitive.tuple.html'>)</a></code></span></td><td></td></tr></table></span><span id='variant.Null' class='variant'><span id='Null.v' class='invisible'><code>Null</code></span></span><div class='docblock'><p>Nothing</p>
+</div><h2 id='implementations'>Trait Implementations</h2><h3 class='impl'><span class='in-band'><code>impl <a class='trait' href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html' title='core::fmt::Debug'>Debug</a> for <a class='enum' href='../pandoc_ast/enum.Block.html' title='pandoc_ast::Block'>Block</a></code></span><span class='out-of-band'><div class='ghost'></div><a class='srclink' href='../src/pandoc_ast/lib.rs.html#29' title='goto source code'>[src]</a></span></h3>
+<div class='impl-items'><h4 id='method.fmt' class='method'><span id='fmt.v' class='invisible'><code>fn <a href='https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html#tymethod.fmt' class='fnname'>fmt</a>(&amp;self, __arg_0: &amp;mut <a class='struct' href='https://doc.rust-lang.org/nightly/core/fmt/struct.Formatter.html' title='core::fmt::Formatter'>Formatter</a>) -&gt; <a class='type' href='https://doc.rust-lang.org/nightly/core/fmt/type.Result.html' title='core::fmt::Result'>Result</a></code></span></h4>
+<div class='docblock'><p>Formats the value using the given formatter.</p>
+</div></div></section>
+    <section id='search' class="content hidden"></section>
+
+    <section class="footer"></section>
+
+    <aside id="help" class="hidden">
+        <div>
+            <h1 class="hidden">Help</h1>
+
+            <div class="shortcuts">
+                <h2>Keyboard Shortcuts</h2>
+
+                <dl>
+                    <dt>?</dt>
+                    <dd>Show this help dialog</dd>
+                    <dt>S</dt>
+                    <dd>Focus the search field</dd>
+                    <dt>&larrb;</dt>
+                    <dd>Move up in search results</dd>
+                    <dt>&rarrb;</dt>
+                    <dd>Move down in search results</dd>
+                    <dt>&#9166;</dt>
+                    <dd>Go to active search result</dd>
+                    <dt>+</dt>
+                    <dd>Collapse/expand all sections</dd>
+                </dl>
+            </div>
+
+            <div class="infos">
+                <h2>Search Tricks</h2>
+
+                <p>
+                    Prefix searches with a type followed by a colon (e.g.
+                    <code>fn:</code>) to restrict the search to a given type.
+                </p>
+
+                <p>
+                    Accepted types are: <code>fn</code>, <code>mod</code>,
+                    <code>struct</code>, <code>enum</code>,
+                    <code>trait</code>, <code>type</code>, <code>macro</code>,
+                    and <code>const</code>.
+                </p>
+
+                <p>
+                    Search functions by type signature (e.g.
+                    <code>vec -> usize</code> or <code>* -> vec</code>)
+                </p>
+            </div>
+        </div>
+    </aside>
+
+    
+
+    <script>
+        window.rootPath = "../";
+        window.currentCrate = "pandoc_ast";
+    </script>
+    <script src="../jquery.js"></script>
+    <script src="../main.js"></script>
+    <script defer src="../search-index.js"></script>
+</body>
+</html>
