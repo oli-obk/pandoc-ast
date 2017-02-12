@@ -10,24 +10,6 @@ fn format() {
     assert_eq!(format.0, "hello");
 }
 
-#[test]
-fn block() {
-    let s = r#"{"Para":[{"RawInline":["tex","\\cake"]}]}"#;
-    let block: Block = serde_json::from_str(s).unwrap();
-    println!("{:#?}", block);
-    let para = match block {
-        Block::Para(para) => para,
-        _ => panic!("not a para"),
-    };
-    assert_eq!(para.len(), 1);
-    match para.into_iter().next().unwrap() {
-        Inline::RawInline(format, text) => {
-            assert_eq!(format.0, "tex");
-            assert_eq!(text, "\\cake");
-        },
-        _ => panic!("not a rawinline"),
-    }
-}
 /*
 #[test]
 fn citation() {
@@ -56,8 +38,7 @@ fn image() {
 #[test]
 fn one_point_seven() {
     let s = r####"{"pandoc-api-version":[1,17,0,4],"meta":{"title":{"t":"MetaInlines","c":[{"t":"Str","c":"Grundlagen"},{"t":"Space"},{"t":"Str","c":"der"},{"t":"Space"},{"t":"Str","c":"Informatik"},{"t":"RawInline","c":["tex","\\"]}]}},"blocks":[{"t":"Para","c":[{"t":"Str","c":"Teil"},{"t":"Space"},{"t":"Str","c":"1"},{"t":"SoftBreak"},{"t":"Str","c":"%"},{"t":"Space"},{"t":"Str","c":"Einführung"},{"t":"Space"},{"t":"Str","c":"C"},{"t":"SoftBreak"},{"t":"Str","c":"%"},{"t":"Space"},{"t":"Str","c":"Dr.-Ing."},{"t":"Space"},{"t":"Str","c":"Jörg"},{"t":"Space"},{"t":"Str","c":"Matthes"},{"t":"LineBreak"},{"t":"Str","c":"Dipl.-Inf."},{"t":"Space"},{"t":"Str","c":"Oliver"},{"t":"Space"},{"t":"Str","c":"Schneider"}]},{"t":"Header","c":[1,["grundlagen",[],[]],[{"t":"Str","c":"Grundlagen"}]]},{"t":"Header","c":[2,["programmiersprachen",[],[]],[{"t":"Str","c":"Programmiersprachen"}]]},{"t":"Para","c":[{"t":"Str","c":"ProgrammiersprachenVerwandschaft.png"}]},{"t":"Header","c":[2,["programmiersprachen-c-und-c",[],[]],[{"t":"Str","c":"Programmiersprachen"},{"t":"Space"},{"t":"Str","c":"C"},{"t":"Space"},{"t":"Str","c":"und"},{"t":"Space"},{"t":"Str","c":"C++"}]]},{"t":"Header","c":[3,["c",[],[]],[{"t":"Str","c":"C"}]]},{"t":"Para","c":[{"t":"Str","c":"imperative"},{"t":"Space"},{"t":"Str","c":"(befehlsorientierte)"},{"t":"Space"},{"t":"Str","c":"Programmiersprache"}]},{"t":"Header","c":[3,["c-1",[],[]],[{"t":"Str","c":"C++"}]]},{"t":"BulletList","c":[[{"t":"Plain","c":[{"t":"Str","c":"Weiterentwicklung"},{"t":"Space"},{"t":"Str","c":"von"},{"t":"Space"},{"t":"Str","c":"C"}]}],[{"t":"Plain","c":[{"t":"Str","c":"objektorientiert"}]}],[{"t":"Plain","c":[{"t":"Str","c":"entwickelt"},{"t":"Space"},{"t":"Str","c":"von"},{"t":"Space"},{"t":"Str","c":"Bjarne"},{"t":"Space"},{"t":"Str","c":"Stroustrup"}]}]]},{"t":"Para","c":[{"t":"Str","c":"Stroustrup.png"}]},{"t":"Header","c":[2,["literaturhinweis",[],[]],[{"t":"Str","c":"Literaturhinweis"}]]},{"t":"Para","c":[{"t":"Str","c":"*..."}]}]}"####;
-    let mut value: serde_json::Value = serde_json::from_str(s).unwrap();
-    pandoc_to_serde(&mut value);
+    let value: serde_json::Value = serde_json::from_str(s).unwrap();
     println!("{:?}", value);
     let _: Pandoc = serde_json::from_value(value).unwrap();
 }
