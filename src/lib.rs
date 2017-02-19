@@ -197,8 +197,10 @@ use serde_json::{from_str, to_string};
 pub fn filter<F: FnOnce(Pandoc)->Pandoc>(json: String, f: F) -> String {
     let v: serde_json::Value = from_str(&json).unwrap();
     let s = serde_json::to_string_pretty(&v).unwrap();
-    println!("{}", s);
-    let data: Pandoc = from_str(&s).expect("deserialization failed");
+    let data: Pandoc = match from_str(&s) {
+        Ok(data) => data,
+        Err(err) => panic!("json is not in the pandoc format: {:?}\n{}", err, s),
+    };
     assert_eq!(data.pandoc_api_version[0..2], [1, 17], "please file a bug report against `pandoc-ast` to update for the newest pandoc version");
     let data = f(data);
     to_string(&data).expect("serialization failed")
