@@ -1,6 +1,6 @@
 use super::*;
 
-trait MutVisitor {
+pub trait MutVisitor {
     fn visit_block(&mut self, block: &mut Block) {
         self.walk_block(block)
     }
