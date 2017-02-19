@@ -1,6 +1,9 @@
 extern crate serde_json;
 #[macro_use] extern crate serde_derive;
 
+mod visitor;
+
+pub use visitor::*;
 pub use std::collections::BTreeMap as Map;
 pub type Int = i64;
 pub type Double = f64;
