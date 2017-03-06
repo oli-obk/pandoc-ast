@@ -1,5 +1,6 @@
 extern crate serde_json;
-#[macro_use] extern crate serde_derive;
+#[macro_use]
+extern crate serde_derive;
 
 mod visitor;
 
@@ -18,70 +19,70 @@ pub struct Pandoc {
 }
 
 #[derive(Serialize, Deserialize, Debug)]
-#[serde(tag = "t")]
+#[serde(tag = "t", content = "c")]
 pub enum MetaValue {
-    MetaMap { c: Map<String, Box<MetaValue>> },
-    MetaList { c: Vec<MetaValue> },
-    MetaBool { c: bool },
-    MetaString { c: String },
-    MetaInlines { c: Vec<Inline> },
-    MetaBlocks { c: Vec<Block> },
+    MetaMap(Map<String, Box<MetaValue>>),
+    MetaList(Vec<MetaValue>),
+    MetaBool(bool),
+    MetaString(String),
+    MetaInlines(Vec<Inline>),
+    MetaBlocks(Vec<Block>),
 }
 
 /// Structured text like tables and lists
 #[derive(Serialize, Deserialize, Debug)]
-#[serde(tag = "t")]
+#[serde(tag = "t", content = "c")]
 pub enum Block {
     /// Plain text, not a paragraph
-    Plain { c: Vec<Inline> },
+    Plain(Vec<Inline>),
     /// Paragraph
-    Para { c: Vec<Inline> },
+    Para(Vec<Inline>),
     /// Multiple non-breaking lines
-    LineBlock { c: Vec<Vec<Inline>> },
+    LineBlock(Vec<Vec<Inline>>),
     /// Code block (literal) with attributes
-    CodeBlock { c: (Attr, String,) },
-    RawBlock { c: (Format, String,) },
+    CodeBlock(Attr, String),
+    RawBlock(Format, String),
     /// Block quote (list of blocks)
-    BlockQuote { c: Vec<Block> },
+    BlockQuote(Vec<Block>),
     /// Ordered list (attributes and a list of items, each a list of blocks)
-    OrderedList { c: (ListAttributes, Vec<Vec<Block>>,) },
+    OrderedList(ListAttributes, Vec<Vec<Block>>),
     /// Bullet list (list of items, each a list of blocks)
-    BulletList { c: Vec<Vec<Block>> },
+    BulletList(Vec<Vec<Block>>),
     /// Definition list Each list item is a pair consisting of a term (a list of inlines)
     /// and one or more definitions (each a list of blocks)
-    DefinitionList { c: Vec<(Vec<Inline>, Vec<Vec<Block>>)> },
+    DefinitionList(Vec<(Vec<Inline>, Vec<Vec<Block>>)>),
     /// Header - level (integer) and text (inlines)
-    Header { c: (Int, Attr, Vec<Inline>,) },
+    Header(Int, Attr, Vec<Inline>),
     HorizontalRule,
     /// Table, with caption, column alignments (required), relative column widths (0 = default),
     /// column headers (each a list of blocks), and rows (each a list of lists of blocks)
-    Table { c: (Vec<Inline>, Vec<Alignment>, Vec<Double>, Vec<TableCell>, Vec<Vec<TableCell>>,) },
+    Table(Vec<Inline>, Vec<Alignment>, Vec<Double>, Vec<TableCell>, Vec<Vec<TableCell>>),
     /// Generic block container with attributes
-    Div { c: (Attr, Vec<Block>,) },
+    Div(Attr, Vec<Block>),
     /// Nothing
     Null,
 }
 
 /// a single formatting item like bold, italic or hyperlink
 #[derive(Serialize, Deserialize, Debug)]
-#[serde(tag = "t")]
+#[serde(tag = "t", content = "c")]
 pub enum Inline {
     /// Text
-    Str { c: String },
+    Str(String),
     /// Emphasized text
-    Emph { c: Vec<Inline> },
+    Emph(Vec<Inline>),
     /// Strongly emphasized text
-    Strong { c: Vec<Inline> },
-    Strikeout { c: Vec<Inline> },
-    Superscript { c: Vec<Inline> },
-    Subscript { c: Vec<Inline> },
-    SmallCaps { c: Vec<Inline> },
+    Strong(Vec<Inline>),
+    Strikeout(Vec<Inline>),
+    Superscript(Vec<Inline>),
+    Subscript(Vec<Inline>),
+    SmallCaps(Vec<Inline>),
     /// Quoted text
-    Quoted { c: (QuoteType,Vec<Inline>,) },
+    Quoted(QuoteType, Vec<Inline>),
     /// Citation
-    Cite { c: (Vec<Citation>, Vec<Inline>,) },
+    Cite(Vec<Citation>, Vec<Inline>),
     /// Inline code (literal)
-    Code { c: (Attr, String,) },
+    Code(Attr, String),
     /// Inter-word space
     Space,
     /// Soft line break
@@ -89,22 +90,21 @@ pub enum Inline {
     /// Hard line break
     LineBreak,
     /// TeX math (literal)
-    Math { c: (MathType, String,) },
-    RawInline { c: (Format, String,) },
+    Math(MathType, String),
+    RawInline(Format, String),
     /// Hyperlink: text (list of inlines), target
     // "Link":[
     //    ["",[],[]],
     //    [{"Str":"1"}],
     //    ["#ref-scala_plugin",""]
     // ]
-
-    Link { c: (Attr, Vec<Inline>, Target,) },
+    Link(Attr, Vec<Inline>, Target),
     /// Image: alt text (list of inlines), target
-    Image { c: (Attr, Vec<Inline>, Target,) },
+    Image(Attr, Vec<Inline>, Target),
     /// Footnote or endnote
-    Note { c: Vec<Block> },
+    Note(Vec<Block>),
     /// Generic inline container with attributes
-    Span { c: (Attr, Vec<Inline>,) },
+    Span(Attr, Vec<Inline>),
 }
 
 /// Alignment of a table column.
@@ -194,14 +194,17 @@ use serde_json::{from_str, to_string};
 
 /// deserialized a json string to a Pandoc object, passes it to the closure/function
 /// and serializes the result back into a string
-pub fn filter<F: FnOnce(Pandoc)->Pandoc>(json: String, f: F) -> String {
+pub fn filter<F: FnOnce(Pandoc) -> Pandoc>(json: String, f: F) -> String {
     let v: serde_json::Value = from_str(&json).unwrap();
     let s = serde_json::to_string_pretty(&v).unwrap();
     let data: Pandoc = match from_str(&s) {
         Ok(data) => data,
         Err(err) => panic!("json is not in the pandoc format: {:?}\n{}", err, s),
     };
-    assert_eq!(data.pandoc_api_version[0..2], [1, 17], "please file a bug report against `pandoc-ast` to update for the newest pandoc version");
+    assert_eq!(data.pandoc_api_version[0..2],
+               [1, 17],
+               "please file a bug report against `pandoc-ast` to update for the newest pandoc \
+                version");
     let data = f(data);
     to_string(&data).expect("serialization failed")
 }
