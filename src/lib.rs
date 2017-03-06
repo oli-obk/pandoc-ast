@@ -196,6 +196,8 @@ use serde_json::{from_str, to_string};
 /// and serializes the result back into a string
 pub fn filter<F: FnOnce(Pandoc) -> Pandoc>(json: String, f: F) -> String {
     let v: serde_json::Value = from_str(&json).unwrap();
+    let obj = v.as_object().expect("broken pandoc json");
+    assert!(obj.contains_key("pandoc-api-version"), "Please update your pandoc to at least version 1.18 or use an older version of `pandoc-ast`");
     let s = serde_json::to_string_pretty(&v).unwrap();
     let data: Pandoc = match from_str(&s) {
         Ok(data) => data,
