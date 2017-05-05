@@ -4,6 +4,8 @@ extern crate serde_derive;
 
 mod visitor;
 
+use serde_json::{from_str, to_string};
+
 pub use visitor::*;
 pub use std::collections::BTreeMap as Map;
 pub type Int = i64;
@@ -16,6 +18,28 @@ pub struct Pandoc {
     pub blocks: Vec<Block>,
     #[serde(rename="pandoc-api-version")]
     pub pandoc_api_version: Vec<u32>,
+}
+
+impl Pandoc {
+    fn from_json(json: &str) -> Self {
+        let v: serde_json::Value = from_str(json).unwrap();
+        let obj = v.as_object().expect("broken pandoc json");
+        assert!(obj.contains_key("pandoc-api-version"), "Please update your pandoc to at least version 1.18 or use an older version of `pandoc-ast`");
+        let s = serde_json::to_string_pretty(&v).unwrap();
+        let data: Self = match from_str(&s) {
+            Ok(data) => data,
+            Err(err) => panic!("json is not in the pandoc format: {:?}\n{}", err, s),
+        };
+        assert_eq!(data.pandoc_api_version[0..2],
+                   [1, 17],
+                   "please file a bug report against `pandoc-ast` to update for the newest pandoc \
+                   version");
+        data
+    }
+
+    fn to_json(&self) -> String {
+        to_string(self).expect("serialization failed")
+    }
 }
 
 #[derive(Serialize, Deserialize, Debug)]
@@ -190,23 +214,8 @@ pub enum CitationMode {
     NormalCitation,
 }
 
-use serde_json::{from_str, to_string};
-
 /// deserialized a json string to a Pandoc object, passes it to the closure/function
 /// and serializes the result back into a string
 pub fn filter<F: FnOnce(Pandoc) -> Pandoc>(json: String, f: F) -> String {
-    let v: serde_json::Value = from_str(&json).unwrap();
-    let obj = v.as_object().expect("broken pandoc json");
-    assert!(obj.contains_key("pandoc-api-version"), "Please update your pandoc to at least version 1.18 or use an older version of `pandoc-ast`");
-    let s = serde_json::to_string_pretty(&v).unwrap();
-    let data: Pandoc = match from_str(&s) {
-        Ok(data) => data,
-        Err(err) => panic!("json is not in the pandoc format: {:?}\n{}", err, s),
-    };
-    assert_eq!(data.pandoc_api_version[0..2],
-               [1, 17],
-               "please file a bug report against `pandoc-ast` to update for the newest pandoc \
-                version");
-    let data = f(data);
-    to_string(&data).expect("serialization failed")
+    f(Pandoc::from_json(&json)).to_json()
 }
