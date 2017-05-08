@@ -12,7 +12,7 @@ pub type Int = i64;
 pub type Double = f64;
 
 /// the root object of a pandoc document
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 pub struct Pandoc {
     pub meta: Map<String, MetaValue>,
     pub blocks: Vec<Block>,
@@ -42,7 +42,7 @@ impl Pandoc {
     }
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 #[serde(tag = "t", content = "c")]
 pub enum MetaValue {
     MetaMap(Map<String, Box<MetaValue>>),
@@ -54,7 +54,7 @@ pub enum MetaValue {
 }
 
 /// Structured text like tables and lists
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 #[serde(tag = "t", content = "c")]
 pub enum Block {
     /// Plain text, not a paragraph
@@ -88,7 +88,7 @@ pub enum Block {
 }
 
 /// a single formatting item like bold, italic or hyperlink
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 #[serde(tag = "t", content = "c")]
 pub enum Inline {
     /// Text
@@ -132,7 +132,7 @@ pub enum Inline {
 }
 
 /// Alignment of a table column.
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[serde(tag = "t")]
 pub enum Alignment {
     AlignLeft,
@@ -144,7 +144,7 @@ pub enum Alignment {
 pub type ListAttributes = (Int, ListNumberStyle, ListNumberDelim);
 
 /// Style of list numbers.
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[serde(tag = "t")]
 pub enum ListNumberStyle {
     DefaultStyle,
@@ -157,7 +157,7 @@ pub enum ListNumberStyle {
 }
 
 /// Delimiter of list numbers.
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[serde(tag = "t")]
 pub enum ListNumberDelim {
     DefaultDelim,
@@ -167,7 +167,7 @@ pub enum ListNumberDelim {
 }
 
 /// Formats for raw blocks
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Format(pub String);
 
 /// Attributes: identifier, classes, key-value pairs
@@ -177,7 +177,7 @@ pub type Attr = (String, Vec<String>, Vec<(String, String)>);
 pub type TableCell = Vec<Block>;
 
 /// Type of quotation marks to use in Quoted inline.
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[serde(tag = "t")]
 pub enum QuoteType {
     SingleQuote,
@@ -188,14 +188,14 @@ pub enum QuoteType {
 pub type Target = (String, String);
 
 /// Type of math element (display or inline).
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[serde(tag = "t")]
 pub enum MathType {
     DisplayMath,
     InlineMath,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq)]
 #[allow(non_snake_case)]
 pub struct Citation {
     pub citationId: String,
@@ -206,7 +206,7 @@ pub struct Citation {
     pub citationHash: Int,
 }
 
-#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq, Eq, Hash)]
 #[serde(tag = "t")]
 pub enum CitationMode {
     AuthorInText,
