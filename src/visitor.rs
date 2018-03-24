@@ -13,6 +13,12 @@ pub trait MutVisitor {
     fn visit_meta(&mut self, _key: &str, meta: &mut MetaValue) {
         self.walk_meta(meta)
     }
+    fn visit_vec_block(&mut self, vec_block: &mut Vec<Block>) {
+        self.walk_vec_block(vec_block)
+    }
+    fn visit_vec_inline(&mut self, vec_inline: &mut Vec<Inline>) {
+        self.walk_vec_inline(vec_inline)
+    }
     fn walk_meta(&mut self, meta: &mut MetaValue) {
         use MetaValue::*;
         match *meta {
@@ -29,14 +35,10 @@ pub trait MutVisitor {
             MetaBool(_) => {}
             MetaString(_) => {}
             MetaInlines(ref mut v_inline) => {
-                for inline in v_inline {
-                    self.visit_inline(inline);
-                }
+                self.visit_vec_inline(v_inline);
             }
             MetaBlocks(ref mut v_block) => {
-                for block in v_block {
-                    self.visit_block(block);
-                }
+                self.visit_vec_block(v_block);
             }
         }
     }
@@ -44,82 +46,58 @@ pub trait MutVisitor {
         for (key, meta) in &mut pandoc.meta {
             self.visit_meta(key, meta);
         }
-        for block in &mut pandoc.blocks {
-            self.visit_block(block);
-        }
+        self.visit_vec_block(&mut pandoc.blocks);
     }
     fn walk_block(&mut self, block: &mut Block) {
         use Block::*;
         match *block {
             Plain(ref mut vec_inline) |
             Para(ref mut vec_inline) => {
-                for inline in vec_inline {
-                    self.visit_inline(inline);
-                }
+                self.visit_vec_inline(vec_inline);
             }
             LineBlock(ref mut vec_vec_inline) => {
                 for vec_inline in vec_vec_inline {
-                    for inline in vec_inline {
-                        self.visit_inline(inline);
-                    }
+                    self.visit_vec_inline(vec_inline);
                 }
             }
             CodeBlock(ref mut attr, _) => self.visit_attr(attr),
             RawBlock { .. } => {}
             BlockQuote(ref mut vec_block) => {
-                for block in vec_block {
-                    self.visit_block(block);
-                }
+                self.visit_vec_block(vec_block);
             }
             OrderedList(_, ref mut vec_vec_block) |
             BulletList(ref mut vec_vec_block) => {
                 for vec_block in vec_vec_block {
-                    for block in vec_block {
-                        self.visit_block(block);
-                    }
+                    self.visit_vec_block(vec_block);
                 }
             }
             DefinitionList(ref mut c) => {
                 for def in c {
-                    for inline in &mut def.0 {
-                        self.visit_inline(inline);
-                    }
+                    self.visit_vec_inline(&mut def.0);
                     for vec_block in &mut def.1 {
-                        for block in vec_block {
-                            self.visit_block(block);
-                        }
+                        self.visit_vec_block(vec_block);
                     }
                 }
             }
             Header(_, ref mut attr, ref mut vec_inline) => {
                 self.visit_attr(attr);
-                for inline in vec_inline {
-                    self.visit_inline(inline);
-                }
+                self.visit_vec_inline(vec_inline);
             }
             HorizontalRule => {}
             Table(ref mut vec_inline, _, _, ref mut vv_block, ref mut vvv_block) => {
-                for inline in vec_inline {
-                    self.visit_inline(inline);
-                }
+                self.visit_vec_inline(vec_inline);
                 for vec_block in vv_block {
-                    for block in vec_block {
-                        self.visit_block(block);
-                    }
+                    self.visit_vec_block(vec_block);
                 }
                 for vv_block in vvv_block {
                     for vec_block in vv_block {
-                        for block in vec_block {
-                            self.visit_block(block);
-                        }
+                        self.visit_vec_block(vec_block);
                     }
                 }
             }
             Div(ref mut attr, ref mut vec_block) => {
                 self.visit_attr(attr);
-                for block in vec_block {
-                    self.visit_block(block);
-                }
+                self.visit_vec_block(vec_block);
             }
             Null => {}
         }
@@ -136,22 +114,14 @@ pub trait MutVisitor {
             Subscript(ref mut c) |
             SmallCaps(ref mut c) |
             Quoted(_, ref mut c) => {
-                for inline in c {
-                    self.visit_inline(inline);
-                }
+                self.visit_vec_inline(c);
             }
             Cite(ref mut v_cite, ref mut v_inl) => {
                 for cite in v_cite {
-                    for inline in &mut cite.citationPrefix {
-                        self.visit_inline(inline);
-                    }
-                    for inline in &mut cite.citationSuffix {
-                        self.visit_inline(inline);
-                    }
+                    self.visit_vec_inline(&mut cite.citationPrefix);
+                    self.visit_vec_inline(&mut cite.citationSuffix);
                 }
-                for inline in v_inl {
-                    self.visit_inline(inline);
-                }
+                self.visit_vec_inline(v_inl);
             }
             Code(ref mut attr, _) => self.visit_attr(attr),
             Space { .. } => {}
@@ -163,15 +133,21 @@ pub trait MutVisitor {
             Image(ref mut attr, ref mut v_inline, _) |
             Span(ref mut attr, ref mut v_inline) => {
                 self.visit_attr(attr);
-                for inline in v_inline {
-                    self.visit_inline(inline);
-                }
+                self.visit_vec_inline(v_inline);
             }
             Note(ref mut c) => {
-                for block in c {
-                    self.visit_block(block);
-                }
+                self.visit_vec_block(c);
             }
+        }
+    }
+    fn walk_vec_block(&mut self, vec_block: &mut Vec<Block>) {
+        for block in vec_block {
+            self.visit_block(block);
+        }
+    }
+    fn walk_vec_inline(&mut self, vec_inline: &mut Vec<Inline>) {
+        for inline in vec_inline {
+            self.visit_inline(inline);
         }
     }
 }
