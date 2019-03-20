@@ -6,8 +6,8 @@ mod visitor;
 
 use serde_json::{from_str, to_string};
 
-pub use visitor::*;
 pub use std::collections::BTreeMap as Map;
+pub use visitor::*;
 pub type Int = i64;
 pub type Double = f64;
 
@@ -16,7 +16,7 @@ pub type Double = f64;
 pub struct Pandoc {
     pub meta: Map<String, MetaValue>,
     pub blocks: Vec<Block>,
-    #[serde(rename="pandoc-api-version")]
+    #[serde(rename = "pandoc-api-version")]
     pub pandoc_api_version: Vec<u32>,
 }
 
@@ -30,10 +30,12 @@ impl Pandoc {
             Ok(data) => data,
             Err(err) => panic!("json is not in the pandoc format: {:?}\n{}", err, s),
         };
-        assert_eq!(data.pandoc_api_version[0..2],
-                   [1, 17],
-                   "please file a bug report against `pandoc-ast` to update for the newest pandoc \
-                   version");
+        assert_eq!(
+            data.pandoc_api_version[0..2],
+            [1, 17],
+            "please file a bug report against `pandoc-ast` to update for the newest pandoc \
+             version"
+        );
         data
     }
 
@@ -80,7 +82,13 @@ pub enum Block {
     HorizontalRule,
     /// Table, with caption, column alignments (required), relative column widths (0 = default),
     /// column headers (each a list of blocks), and rows (each a list of lists of blocks)
-    Table(Vec<Inline>, Vec<Alignment>, Vec<Double>, Vec<TableCell>, Vec<Vec<TableCell>>),
+    Table(
+        Vec<Inline>,
+        Vec<Alignment>,
+        Vec<Double>,
+        Vec<TableCell>,
+        Vec<Vec<TableCell>>,
+    ),
     /// Generic block container with attributes
     Div(Attr, Vec<Block>),
     /// Nothing

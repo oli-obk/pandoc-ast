@@ -1,7 +1,7 @@
 extern crate pandoc_ast;
 
-use pandoc_ast::{MutVisitor, Inline};
-use std::io::{self, Write, Read};
+use pandoc_ast::{Inline, MutVisitor};
+use std::io::{self, Read, Write};
 
 struct MyVisitor;
 

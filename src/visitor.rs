@@ -51,8 +51,7 @@ pub trait MutVisitor {
     fn walk_block(&mut self, block: &mut Block) {
         use Block::*;
         match *block {
-            Plain(ref mut vec_inline) |
-            Para(ref mut vec_inline) => {
+            Plain(ref mut vec_inline) | Para(ref mut vec_inline) => {
                 self.visit_vec_inline(vec_inline);
             }
             LineBlock(ref mut vec_vec_inline) => {
@@ -65,8 +64,7 @@ pub trait MutVisitor {
             BlockQuote(ref mut vec_block) => {
                 self.visit_vec_block(vec_block);
             }
-            OrderedList(_, ref mut vec_vec_block) |
-            BulletList(ref mut vec_vec_block) => {
+            OrderedList(_, ref mut vec_vec_block) | BulletList(ref mut vec_vec_block) => {
                 for vec_block in vec_vec_block {
                     self.visit_vec_block(vec_block);
                 }
@@ -107,13 +105,13 @@ pub trait MutVisitor {
         use Inline::*;
         match *inline {
             Str { .. } => {}
-            Emph(ref mut c) |
-            Strong(ref mut c) |
-            Strikeout(ref mut c) |
-            Superscript(ref mut c) |
-            Subscript(ref mut c) |
-            SmallCaps(ref mut c) |
-            Quoted(_, ref mut c) => {
+            Emph(ref mut c)
+            | Strong(ref mut c)
+            | Strikeout(ref mut c)
+            | Superscript(ref mut c)
+            | Subscript(ref mut c)
+            | SmallCaps(ref mut c)
+            | Quoted(_, ref mut c) => {
                 self.visit_vec_inline(c);
             }
             Cite(ref mut v_cite, ref mut v_inl) => {
@@ -129,9 +127,9 @@ pub trait MutVisitor {
             LineBreak { .. } => {}
             Math { .. } => {}
             RawInline { .. } => {}
-            Link(ref mut attr, ref mut v_inline, _) |
-            Image(ref mut attr, ref mut v_inline, _) |
-            Span(ref mut attr, ref mut v_inline) => {
+            Link(ref mut attr, ref mut v_inline, _)
+            | Image(ref mut attr, ref mut v_inline, _)
+            | Span(ref mut attr, ref mut v_inline) => {
                 self.visit_attr(attr);
                 self.visit_vec_inline(v_inline);
             }

@@ -1,7 +1,7 @@
 extern crate pandoc_ast;
 
-use pandoc_ast::{MutVisitor, Inline};
-use std::io::{self, Write, Read};
+use pandoc_ast::{Inline, MutVisitor};
+use std::io::{self, Read, Write};
 
 struct MyVisitor;
 
@@ -9,7 +9,7 @@ impl MutVisitor for MyVisitor {
     fn visit_vec_inline(&mut self, vec_inline: &mut Vec<Inline>) {
         vec_inline.retain(|inline| match inline {
             &Inline::Note(_) => false,
-            _ => true
+            _ => true,
         });
         self.walk_vec_inline(vec_inline);
     }
