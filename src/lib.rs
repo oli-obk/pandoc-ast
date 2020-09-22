@@ -30,11 +30,17 @@ impl Pandoc {
             Ok(data) => data,
             Err(err) => panic!("json is not in the pandoc format: {:?}\n{}", err, s),
         };
+        //test major version
         assert_eq!(
-            data.pandoc_api_version[0..2],
-            [1, 17],
-            "please file a bug report against `pandoc-ast` to update for the newest pandoc \
-             version"
+            data.pandoc_api_version[0], 1,
+            "pandoc-ast minor version mismatch: \
+			 please file a bug report against `pandoc-ast` to update for the newest pandoc version"
+        );
+        //test minor version
+        assert!(
+            (1..22).contains(&data.pandoc_api_version[1]),
+            "pandoc-ast minor version mismatch: \
+			 please file a bug report against `pandoc-ast` to update for the newest pandoc version"
         );
         data
     }
