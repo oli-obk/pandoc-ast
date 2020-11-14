@@ -9,6 +9,7 @@ documentation = "https://docs.rs/pandoc_ast/0.6.0/pandoc_ast/"
 license-file = "LICENSE"
 description = "deserializes and serializes the markdown ast for writing pandoc filters"
 
+
 [dependencies]
 serde = "1.0.2"
 serde_json = "1.0.1"

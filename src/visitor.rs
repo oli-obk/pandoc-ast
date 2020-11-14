@@ -19,6 +19,9 @@ pub trait MutVisitor {
     fn visit_vec_inline(&mut self, vec_inline: &mut Vec<Inline>) {
         self.walk_vec_inline(vec_inline)
     }
+    fn visit_rows(&mut self, rows: &mut Vec<Row>) {
+        self.walk_rows(rows)
+    }
     fn walk_meta(&mut self, meta: &mut MetaValue) {
         use MetaValue::*;
         match *meta {
@@ -82,16 +85,34 @@ pub trait MutVisitor {
                 self.visit_vec_inline(vec_inline);
             }
             HorizontalRule => {}
-            Table(ref mut vec_inline, _, _, ref mut vv_block, ref mut vvv_block) => {
-                self.visit_vec_inline(vec_inline);
-                for vec_block in vv_block {
-                    self.visit_vec_block(vec_block);
-                }
-                for vv_block in vvv_block {
-                    for vec_block in vv_block {
-                        self.visit_vec_block(vec_block);
+            Table(ref mut attr, ref mut caption, _, ref mut head, ref mut bodies, ref mut foot) => {
+                self.visit_attr(attr);
+                {
+                    let (short, caption) = caption;
+                    if let Some(shortcaption) = short {
+                        self.visit_vec_inline(shortcaption);
                     }
+
+                    self.visit_vec_block(caption);
                 }
+                {
+                    let (attr, rows) = head;
+                    self.visit_attr(attr);
+                    self.visit_rows(rows);
+                }
+                for body in bodies {
+                    let (attr, _, rows_h, rows) = body;
+                    self.visit_attr(attr);
+                    self.visit_rows(rows_h);
+                    self.visit_rows(rows);
+
+                }
+                {
+                    let (attr, rows) = foot;
+                    self.visit_attr(attr);
+                    self.visit_rows(rows);
+                }
+
             }
             Div(ref mut attr, ref mut vec_block) => {
                 self.visit_attr(attr);
@@ -107,6 +128,7 @@ pub trait MutVisitor {
             Str { .. } => {}
             Emph(ref mut c)
             | Strong(ref mut c)
+            | Underline(ref mut c)
             | Strikeout(ref mut c)
             | Superscript(ref mut c)
             | Subscript(ref mut c)
@@ -135,6 +157,15 @@ pub trait MutVisitor {
             }
             Note(ref mut c) => {
                 self.visit_vec_block(c);
+            }
+        }
+    }
+    fn walk_rows(&mut self, rows: &mut Vec<Row>){
+        for (attr, cells) in rows {
+            self.visit_attr(attr);
+            for (cell_attr, _, _, _, content) in cells {
+                self.visit_attr(cell_attr);
+                self.visit_vec_block(content);
             }
         }
     }

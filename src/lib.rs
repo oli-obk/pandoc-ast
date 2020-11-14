@@ -36,12 +36,15 @@ impl Pandoc {
             "pandoc-ast minor version mismatch: \
 			 please file a bug report against `pandoc-ast` to update for the newest pandoc version"
         );
-        //test minor version
+        
+        // [1.21 , 1.22]
         assert!(
-            (1..22).contains(&data.pandoc_api_version[1]),
+            (20..23).contains(&data.pandoc_api_version[1]),
             "pandoc-ast minor version mismatch: \
-			 please file a bug report against `pandoc-ast` to update for the newest pandoc version"
+            please file a bug report against `pandoc-ast` to update for the newest pandoc version"
         );
+
+
         data
     }
 
@@ -86,14 +89,15 @@ pub enum Block {
     /// Header - level (integer) and text (inlines)
     Header(Int, Attr, Vec<Inline>),
     HorizontalRule,
-    /// Table, with caption, column alignments (required), relative column widths (0 = default),
-    /// column headers (each a list of blocks), and rows (each a list of lists of blocks)
+    /// Table, with attributes, caption, column alignments + widths
+    /// column headers (each a list of rows), body and foot
     Table(
-        Vec<Inline>,
-        Vec<Alignment>,
-        Vec<Double>,
-        Vec<TableCell>,
-        Vec<Vec<TableCell>>,
+        Attr,
+        Caption,
+        Vec<ColSpec>,
+        TableHead,
+        Vec<TableBody>,
+        TableFoot
     ),
     /// Generic block container with attributes
     Div(Attr, Vec<Block>),
@@ -109,6 +113,8 @@ pub enum Inline {
     Str(String),
     /// Emphasized text
     Emph(Vec<Inline>),
+    /// Underlined text
+    Underline(Vec<Inline>),
     /// Strongly emphasized text
     Strong(Vec<Inline>),
     Strikeout(Vec<Inline>),
@@ -198,6 +204,36 @@ pub enum QuoteType {
     DoubleQuote,
 }
 
+/// Caption of a Table (Short caption, Caption)
+pub type Caption = (Option<ShortCaption>, Vec<Block>);
+
+/// Short caption of a Table
+pub type ShortCaption = Vec<Inline>;
+
+pub type RowHeadColumns = Int;
+
+#[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq)]
+#[serde(tag = "t")]
+pub enum ColWidth {
+    ColWidth(Double),
+    ColWidthDefault
+}
+
+pub type ColSpec = (Alignment, ColWidth);
+
+pub type Row = (Attr, Vec<Cell>);
+
+pub type TableHead = (Attr, Vec<Row>);
+
+pub type TableBody = (Attr, RowHeadColumns, Vec<Row>, Vec<Row>);
+
+pub type TableFoot = (Attr, Vec<Row>);
+
+pub type Cell = (Attr, Alignment, RowSpan, ColSpan, Vec<Block>);
+
+pub type RowSpan = Int;
+
+pub type ColSpan = Int;
 /// Link target (URL, title).
 pub type Target = (String, String);
 
