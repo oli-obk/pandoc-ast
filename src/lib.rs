@@ -21,7 +21,7 @@ pub struct Pandoc {
 }
 
 impl Pandoc {
-    fn from_json(json: &str) -> Self {
+    pub fn from_json(json: &str) -> Self {
         let v: serde_json::Value = from_str(json).unwrap();
         let obj = v.as_object().expect("broken pandoc json");
         assert!(obj.contains_key("pandoc-api-version"), "Please update your pandoc to at least version 1.18 or use an older version of `pandoc-ast`");
@@ -36,7 +36,7 @@ impl Pandoc {
             "pandoc-ast minor version mismatch: \
 			 please file a bug report against `pandoc-ast` to update for the newest pandoc version"
         );
-        
+
         // [1.21 , 1.22]
         assert!(
             (20..23).contains(&data.pandoc_api_version[1]),
@@ -48,7 +48,7 @@ impl Pandoc {
         data
     }
 
-    fn to_json(&self) -> String {
+    pub fn to_json(&self) -> String {
         to_string(self).expect("serialization failed")
     }
 }
