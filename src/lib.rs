@@ -213,7 +213,7 @@ pub type ShortCaption = Vec<Inline>;
 pub type RowHeadColumns = Int;
 
 #[derive(Serialize, Deserialize, Debug, Clone, Copy, PartialEq)]
-#[serde(tag = "t")]
+#[serde(tag = "t", content = "c")]
 pub enum ColWidth {
     ColWidth(Double),
     ColWidthDefault
