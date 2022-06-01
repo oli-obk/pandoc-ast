@@ -1,6 +1,6 @@
 [package]
 name = "pandoc_ast"
-version = "0.8.1"
+version = "0.8.2"
 authors = ["Oliver Schneider <rust-pandoc-ast885559849564@oli-obk.de>"]
 readme = "README.md"
 keywords = ["latex", "markdown", "pandoc", "filter", "ast"]
