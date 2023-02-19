@@ -37,13 +37,12 @@ impl Pandoc {
 			 please file a bug report against `pandoc-ast` to update for the newest pandoc version"
         );
 
-        // [1.21 , 1.22]
+        // [1.21 , 1.23]
         assert!(
-            (20..23).contains(&data.pandoc_api_version[1]),
+            (20..=23).contains(&data.pandoc_api_version[1]),
             "pandoc-ast minor version mismatch: \
             please file a bug report against `pandoc-ast` to update for the newest pandoc version"
         );
-
 
         data
     }
