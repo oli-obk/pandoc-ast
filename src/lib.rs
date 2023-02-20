@@ -102,7 +102,14 @@ pub enum Block {
     HorizontalRule,
     /// Table, with attributes, caption, column alignments + widths
     /// column headers (each a list of rows), body and foot
-    Table(Attr, Caption, Vec<ColSpec>, TableHead, Vec<TableBody>, TableFoot),
+    Table(
+        Attr,
+        Caption,
+        Vec<ColSpec>,
+        TableHead,
+        Vec<TableBody>,
+        TableFoot
+    ),
     /// Generic block container with attributes
     Div(Attr, Vec<Block>),
     /// Nothing
@@ -220,7 +227,7 @@ pub type RowHeadColumns = Int;
 #[serde(tag = "t", content = "c")]
 pub enum ColWidth {
     ColWidth(Double),
-    ColWidthDefault,
+    ColWidthDefault
 }
 
 pub type ColSpec = (Alignment, ColWidth);
