@@ -24,27 +24,38 @@ impl Pandoc {
     pub fn from_json(json: &str) -> Self {
         let v: serde_json::Value = from_str(json).unwrap();
         let obj = v.as_object().expect("broken pandoc json");
-        assert!(obj.contains_key("pandoc-api-version"), "Please update your pandoc to at least version 1.18 or use an older version of `pandoc-ast`");
+        fn pandoc_version(obj: &serde_json::Map<String, serde_json::Value>) -> Option<(i64, i64)> {
+            let version = obj
+                .get("pandoc-api-version")?
+                .as_array()?
+                .into_iter()
+                .map(|v| v.as_i64())
+                .collect::<Vec<_>>();
+            match version[..] {
+                [Some(major), Some(minor)] => Some((major, minor)),
+                _ => None,
+            }
+        }
+        // test pandoc version
+        if let Some((major, minor)) = pandoc_version(&obj) {
+            if !(major == 1 && minor >= 20) {
+                panic!(
+                    "Pandoc version mismatch: \
+                    `pandoc-ast` expects pandoc version 1.20 or newer, got {}.{}",
+                    major, minor
+                );
+            }
+        } else {
+            panic!(
+                "Unable to parse pandoc version from JSON. \
+                Please update your pandoc to at least version 1.18 or use an older version of `pandoc-ast`"
+            );
+        }
         let s = serde_json::to_string_pretty(&v).unwrap();
         let data: Self = match from_str(&s) {
             Ok(data) => data,
             Err(err) => panic!("json is not in the pandoc format: {:?}\n{}", err, s),
         };
-        //test major version
-        assert_eq!(
-            data.pandoc_api_version[0], 1,
-            "pandoc-ast minor version mismatch: \
-			 please file a bug report against `pandoc-ast` to update for the newest pandoc version"
-        );
-
-        // [1.21 , 1.22]
-        assert!(
-            (20..23).contains(&data.pandoc_api_version[1]),
-            "pandoc-ast minor version mismatch: \
-            please file a bug report against `pandoc-ast` to update for the newest pandoc version"
-        );
-
-
         data
     }
 
