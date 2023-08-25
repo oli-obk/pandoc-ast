@@ -32,7 +32,7 @@ impl Pandoc {
                 .map(|v| v.as_i64())
                 .collect::<Vec<_>>();
             match version[..] {
-                [Some(major), Some(minor)] => Some((major, minor)),
+                [Some(major), Some(minor), ..] => Some((major, minor)),
                 _ => None,
             }
         }
