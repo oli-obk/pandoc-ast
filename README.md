@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/oli-obk/pandoc-ast.svg?branch=master)](https://travis-ci.org/oli-obk/pandoc-ast)
-
 This crate allows you to implement filters for pandoc.
 The easiest way is to them in conjunction with the `pandoc` crate.
 You can also create a binary that reads from stdin and writes to stdout and
