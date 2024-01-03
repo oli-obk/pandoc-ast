@@ -28,7 +28,7 @@ impl Pandoc {
             let version = obj
                 .get("pandoc-api-version")?
                 .as_array()?
-                .into_iter()
+                .iter()
                 .map(|v| v.as_i64())
                 .collect::<Vec<_>>();
             match version[..] {
@@ -37,7 +37,7 @@ impl Pandoc {
             }
         }
         // test pandoc version
-        if let Some((major, minor)) = pandoc_version(&obj) {
+        if let Some((major, minor)) = pandoc_version(obj) {
             if !(major == 1 && minor >= 20) {
                 panic!(
                     "Pandoc version mismatch: \
@@ -108,7 +108,7 @@ pub enum Block {
         Vec<ColSpec>,
         TableHead,
         Vec<TableBody>,
-        TableFoot
+        TableFoot,
     ),
     /// Generic block container with attributes
     Div(Attr, Vec<Block>),
@@ -227,7 +227,7 @@ pub type RowHeadColumns = Int;
 #[serde(tag = "t", content = "c")]
 pub enum ColWidth {
     ColWidth(Double),
-    ColWidthDefault
+    ColWidthDefault,
 }
 
 pub type ColSpec = (Alignment, ColWidth);
