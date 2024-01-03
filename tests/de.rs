@@ -7,19 +7,20 @@ fn format() {
     assert_eq!(format.0, "hello");
 }
 
-/*
 #[test]
 fn citation() {
-    let s = r###"[{"unMeta":{}},[{"Para":[{"Cite":[[{"citationHash":1,"citationId":"scala_plugin","citationMode":{"NormalCitation":[]},"citationNoteNum":0,"citationPrefix":[],"citationSuffix":[]}],[{"Link":[["",[],[]],[{"Str":"1"}],["#ref-scala_plugin",""]]}]]}]}]]"###;
+    let s = r###"{"pandoc-api-version":[1,22],"meta":{},"blocks":[{"t":"Para", "c":[{"t":"Cite", "c":[[{"citationHash":1,"citationId":"scala_plugin","citationMode":{"t":"NormalCitation", "c":[]},"citationNoteNum":0,"citationPrefix":[],"citationSuffix":[]}],[{"t":"Link", "c":[["",[],[]],[{"t": "Str", "c":"1"}],["#ref-scala_plugin",""]]}]]}]}]}"###;
     filter(s.to_string(), |x| x);
 }
+
+/*
 
 #[test]
 fn full_citation() {
     let s = r###"[{"unMeta":{"bibliography":{"MetaString":"bibliography.bib"},"csl":{"MetaString":"springer-basic-brackets-no-et-al-alphabetical.csl"},"link-citations":{"MetaBool":true}}},[{"Para":[{"Cite":[[{"citationHash":1,"citationId":"scala_plugin","citationMode":{"NormalCitation":[]},"citationNoteNum":0,"citationPrefix":[],"citationSuffix":[]}],[{"Str":"["},{"Link":[["",[],[]],[{"Str":"1"}],["#ref-scala_plugin",""]]},{"Str":"]"}]]}]},{"Header":[1,["literatur",["unnumbered"],[]],[{"Str":"Literatur"}]]},{"Para":[{"Str":" "},{"LineBreak":[]}]},{"Div":[["refs",["references"],[]],[{"Div":[["ref-scala_plugin",[],[]],[{"Para":[{"Str":"1"},{"Link":[["",[],[]],[{"Str":"text"}],["addr",""]]},{"Str":"."},{"Space":[]}]}]]}]]}]]"###;
     filter(s.to_string(), |x| x);
-}*/
-/*
+}
+
 #[test]
 fn image() {
     //let s = r####"[{"unMeta":{"date":{"t":"MetaInlines","c":[{"t":"Str","c":"Dr.-Ing."},{"t":"Space","c":[]},{"t":"Str","c":"Jörg"},{"t":"Space","c":[]},{"t":"Str","c":"Matthes"},{"t":"LineBreak","c":[]},{"t":"Str","c":"Dipl.-Inf."},{"t":"Space","c":[]},{"t":"Str","c":"Oliver"},{"t":"Space","c":[]},{"t":"Str","c":"Schneider"}]},"author":{"t":"MetaList","c":[{"t":"MetaInlines","c":[{"t":"Str","c":"Einführung"},{"t":"Space","c":[]},{"t":"Str","c":"C"}]}]},"title":{"t":"MetaInlines","c":[{"t":"Str","c":"Grundlagen"},{"t":"Space","c":[]},{"t":"Str","c":"der"},{"t":"Space","c":[]},{"t":"Str","c":"Informatik"},{"t":"LineBreak","c":[]},{"t":"Str","c":"Teil"},{"t":"Space","c":[]},{"t":"Str","c":"1"}]}}},[{"t":"Header","c":[1,["grundlagen",[],[]],[{"t":"Str","c":"Grundlagen"}]]},{"t":"Header","c":[2,["einführung-programmiersprachen",[],[]],[{"t":"Str","c":"Einführung"},{"t":"Space","c":[]},{"t":"Str","c":"Programmiersprachen"}]]},{"t":"Para","c":[{"t":"Image","c":[[],["ProgrammiersprachenVerwandschaft.png","fig:"]]}]},{"t":"Header","c":[1,["baaa",[],[]],[{"t":"Str","c":"BAAA"}]]},{"t":"BulletList","c":[[{"t":"Plain","c":[{"t":"Str","c":"bee"}]}],[{"t":"Plain","c":[{"t":"Str","c":"boo"}]}]]},{"t":"Header","c":[1,["bool",[],[]],[{"t":"Str","c":"Bool"}]]},{"t":"Para","c":[{"t":"Str","c":"bar"}]}]]"####;
