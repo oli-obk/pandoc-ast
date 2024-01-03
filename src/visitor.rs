@@ -105,14 +105,12 @@ pub trait MutVisitor {
                     self.visit_attr(attr);
                     self.visit_rows(rows_h);
                     self.visit_rows(rows);
-
                 }
                 {
                     let (attr, rows) = foot;
                     self.visit_attr(attr);
                     self.visit_rows(rows);
                 }
-
             }
             Div(ref mut attr, ref mut vec_block) => {
                 self.visit_attr(attr);
@@ -160,7 +158,7 @@ pub trait MutVisitor {
             }
         }
     }
-    fn walk_rows(&mut self, rows: &mut Vec<Row>){
+    fn walk_rows(&mut self, rows: &mut Vec<Row>) {
         for (attr, cells) in rows {
             self.visit_attr(attr);
             for (cell_attr, _, _, _, content) in cells {
