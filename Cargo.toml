@@ -7,7 +7,7 @@ keywords = ["latex", "markdown", "pandoc", "filter", "ast"]
 repository = "https://github.com/oli-obk/pandoc-ast"
 license = "MIT"
 description = "deserializes and serializes the markdown ast for writing pandoc filters"
-
+edition = "2021"
 
 [dependencies]
 serde = "1.0.2"

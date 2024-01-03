@@ -1,6 +1,3 @@
-extern crate pandoc_ast;
-extern crate serde_json;
-
 use pandoc_ast::*;
 
 #[test]

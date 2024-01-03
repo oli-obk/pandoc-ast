@@ -1,9 +1,6 @@
-extern crate serde_json;
-#[macro_use]
-extern crate serde_derive;
-
 mod visitor;
 
+use serde_derive::{Deserialize, Serialize};
 use serde_json::{from_str, to_string};
 
 pub use std::collections::BTreeMap as Map;

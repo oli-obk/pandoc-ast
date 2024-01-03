@@ -6,9 +6,6 @@ pass that to a normal pandoc call with `--filter`
 # Instructions
 
 ```rust
-extern crate pandoc;
-extern crate pandoc_ast;
-
 fn main() {
     let mut pandoc = pandoc::new();
 
