@@ -80,6 +80,18 @@ pub trait MutVisitor {
                     }
                 }
             }
+            Figure(ref mut attr, ref mut caption, ref mut vec_block) => {
+                self.visit_attr(attr);
+                {
+                    let (short, caption) = caption;
+                    if let Some(shortcaption) = short {
+                        self.visit_vec_inline(shortcaption);
+                    }
+
+                    self.visit_vec_block(caption);
+                }
+                self.visit_vec_block(vec_block);
+            }
             Header(_, ref mut attr, ref mut vec_inline) => {
                 self.visit_attr(attr);
                 self.visit_vec_inline(vec_inline);

@@ -94,6 +94,8 @@ pub enum Block {
     /// Definition list Each list item is a pair consisting of a term (a list of inlines)
     /// and one or more definitions (each a list of blocks)
     DefinitionList(Vec<(Vec<Inline>, Vec<Vec<Block>>)>),
+    /// Figure, with attributes, caption, list of blocks
+    Figure(Attr, Caption, Vec<Block>),
     /// Header - level (integer) and text (inlines)
     Header(Int, Attr, Vec<Inline>),
     HorizontalRule,
