@@ -34,18 +34,23 @@ impl Pandoc {
             }
         }
         // test pandoc version
+        const REQUIRED_PANDOC_VERSION: &str = "2.8";
         if let Some((major, minor)) = pandoc_version(obj) {
-            if !(major == 1 && minor >= 20) {
+            let (required_major, required_minor) = (1, 20);
+            if !(major == required_major && minor >= required_minor) {
                 panic!(
                     "Pandoc version mismatch: \
-                    `pandoc-ast` expects pandoc version 1.20 or newer, got {}.{}",
-                    major, minor
+                    `pandoc-ast` expects Pandoc AST version {}.{} or newer \
+                    (`pandoc` {} or newer), got {}.{}",
+                    required_major, required_minor, REQUIRED_PANDOC_VERSION, major, minor
                 );
             }
         } else {
             panic!(
-                "Unable to parse pandoc version from JSON. \
-                Please update your pandoc to at least version 1.18 or use an older version of `pandoc-ast`"
+                "Unable to parse Pandoc AST version from JSON. \
+                Please update your pandoc to at least version {} \
+                or use an older version of `pandoc-ast`",
+                REQUIRED_PANDOC_VERSION
             );
         }
         let s = serde_json::to_string_pretty(&v).unwrap();
